@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Minitourist Cards</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icons -->
+    <link rel="icon" href="images/fevicon/fevicon.png" type="image/gif" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <!-- Site css -->
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="/static/css/responsive.css" />
+    <!-- colors css -->
+    <link rel="stylesheet" href="/static/css/colors1.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="/static/css/custom.css" />
+    <!-- wow Animation css -->
+    <link rel="stylesheet" href="/static/css/animate.css" />
+</head>
+
+<body id="default_theme" class="it_service about">
+    <!-- header -->
+    <header id="default_header" class="header_style_1">
+        <!-- header top -->
+        <div class="header_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="full">
+                            <div class="topbar-left">
+                                <ul class="list-inline">
+                                    
+                                    <div class="float-left">
+                                        <div class="social_icon">
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <a class="fa fa-facebook" href="https://www.facebook.com/" title="Facebook" target="_blank"></a>
+                                                </li>
+                                                <li>
+                                                    <a class="fa fa-google-plus" href="https://plus.google.com/" title="Google+" target="_blank"></a>
+                                                </li>
+                                                <li>
+                                                    <a class="fa fa-twitter" href="https://twitter.com" title="Twitter" target="_blank"></a>
+                                                </li>
+                                                <li>
+                                                    <a class="fa fa-linkedin" href="https://www.linkedin.com" title="LinkedIn" target="_blank"></a>
+                                                </li>
+                                                <li>
+                                                    <a class="fa fa-instagram" href="https://www.instagram.com" title="Instagram" target="_blank"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 right_section_header_top">
+                        <div class="social_icon">
+                            <ul class="list-inline">
+                                {% if logged_in %}
+                                <li>
+                                    <a href="/logout" style="text-align: left;">Cerrar sesión</a>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a href="/login" style="text-align: left;">Iniciar sesión</a>
+                                </li>
+                                {% endif %}
+                                <li>
+                                    <a href="/tarjeta_status" style="text-align: left;">Dashboard</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end header top -->
+        <!-- header bottom -->
+        <div class="header_bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <!-- logo start -->
+                        <div class="logo">
+                            <img src="/static/img/logo.png" alt="logo" />
+                        </div>
+                        <!-- logo end -->
+                    </div>
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <!-- menu start -->
+                        <div class="menu_side">
+                            <div id="navbar_menu">
+                                <ul class="first-ul">
+                                    <li> <a href="/">Inicio</a>
+                                    </li>
+                                    <li><a href="/quienes">Acerca de nosotros</a></li>
+                                    </li>
+                                    <li> <a class="active" href="/mt">¿Qué son las Minitourist Cards?</a>
+                                    </li>
+                                    <li> <a href="/contacto">Contáctanos</a>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- menu end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header bottom end -->
+    </header>
+    <!-- end header -->
+    <!-- section -->
+    <div class="padding_layout_1 light_silver">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <div class="main_heading text_align_left">
+                            <h2>Acerca del servicio</h2>
+                            <p class="large">Forma fácil y efectiva de dar a conocer tu negocio.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="full">
+                                <div>
+                                    <h4 class="service-heading">Tarjetas digitales</h4>
+                                    <p class="justificar">Las <strong class="mini-tourist">MiniTourist Cards</strong> son tarjetas digitales en las que se contiene toda la información sobre sitios, productos y servicios tales como museos, atracciones, restaurantes, tiendas,
+                                        playas y cualquier otro tipo de locación que pretenda, anunciarse o promocionarse.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <div>
+                                    <h4 class="service-heading">Información precisa</h4>
+                                    <p class="justificar">Las <strong class="mini-tourist">MiniTourist Cards</strong> conjugan una excelente presentación sobre los distintos productos, lugares y servicios que se ofrecen, hoy por hoy en Ixtapa-Zihuatanejo. Conteniendo solo
+                                        la información precisa que se debe conocer y, conjugando a su vez, la versatilidad de un diseño que también contiene un mapa de ubicación con un formato visualmente muy atractivo para el turista o potencial consumidor.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="full">
+                                <div>
+                                    <h4 class="service-heading">Diseño elegante</h4>
+                                    <p class="justificar"><strong class="mini-tourist">MiniTourist Cards</strong> cuenta con un diseño elegante y en un formato digital que hace que el turista o el cliente potencial, tenga en su mano toda la información específica del lugar
+                                        de su interés en su dispositivo móvil.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="full">
+                                <div>
+                                    <h4 class="service-heading">Herramienta de mercadotecnia</h4>
+                                    <p class="justificar">Las <strong class="mini-tourist">MiniTourist Cards</strong> se convierten en una excelente herramienta de mercadotecnia que llega directamente a la manos de los consumidores potenciales, ya que se puede acceder a la
+                                        página de <strong class="mini-tourist">MiniTourist Cards</strong> para descargar las tarjetas en sus dispositivos móviles, página a la cual se puede acceder leyendo un código QR que estara distribuido en displays
+                                        que se ubican en los principales espacios de acceso de hoteles, restaurantes, tiendas de autoservicio y terminales de arribo entre otras, que son, el paso obligado de turistas y personas en general.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="full">
+                                <div>
+                                    <h4 class="service-heading">Marketing comercial</h4>
+                                    <p class="justificar">El sistema y formato que utiliza <strong class="mini-tourist">MiniTourist Cards</strong> es, actualmente, punta de lanza en materia de <strong>Marketing</strong> comercial en ciudades como Nueva York, Chicago, Londres,
+                                        Estocolmo, Moscu, Barcelona, Madrid y Zurich entre otras.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="full">
+                                <div>
+                                    <h4 class="service-heading">Novedosa y elegante forma de guiar al consumidor</h4>
+                                    <p class="justificar">Como instrumento o herramienta para las áreas de consierges y recepción en los hoteles, áreas de recepción de pasajeros, o mostradores de atención a clientes o turistas, <strong class="mini-tourist">MiniTourist Cards</strong>                                        resulta una novedosa y elegante forma alternativa de guiar y recomendar a los huéspedes o clientes sobre diferentes lugares, servicios y actividades que, a parte de la hotelería, también se ofertan en Ixtapa-Zihuatanejo.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end section -->
+    <!-- footer -->
+    <footer>
+        <div class="cprt">
+            <p>Minitourist Cards © Copyrights 2020</p>
+        </div>
+    </footer>
+    <!-- end footer -->
+    <!-- js section -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!-- menu js -->
+    <script src="/static/js/menumaker.js"></script>
+    <!-- wow animation -->
+    <script src="/static/js/wow.js"></script>
+    <!-- custom js -->
+    <script src="/static/js/custom.js"></script>
+</body>
+
+</html>

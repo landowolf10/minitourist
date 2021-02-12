@@ -1,0 +1,365 @@
+Tablas:
+CREATE TABLE IF NOT EXISTS usuarios
+(
+    id 			 INT AUTO_INCREMENT,
+    nombre 		 VARCHAR(200) NOT NULL,
+    direccion 	 VARCHAR(200) NOT NULL,
+    ciudad 	 	 VARCHAR(100) NOT NULL,
+    telefono 	 VARCHAR(10)  NOT NULL,
+    email		 VARCHAR(100) NOT NULL,
+    pass		 VARCHAR(20) NOT NULL,
+    imagen		 VARCHAR(50)  NOT NULL,
+    tipo_usuario VARCHAR(30)  NOT NULL,
+    tipo_tarjeta VARCHAR(100)  NOT NULL,
+    PRIMARY KEY (id)
+);
+
+
+CREATE TABLE IF NOT EXISTS tarjetas_status
+(
+    id 		INT AUTO_INCREMENT,
+    nombre 	VARCHAR(200) NOT NULL,
+    ciudad  VARCHAR(100) NOT NULL,
+    tipo	VARCHAR(50)  NOT NULL,
+    fecha 	DATE NOT NULL,
+    PRIMARY KEY (id)
+);
+
+
+
+
+
+Procedimientos almacenados:
+1. Procedimiento almacenado para insertar en la tabla usuarios.
+DELIMITER //
+CREATE PROCEDURE spInsertUser
+( 
+    IN _nombre 			VARCHAR(200),
+    IN _direccion 		VARCHAR(200),
+    IN _ciudad 			VARCHAR(100),
+    IN _tel 			VARCHAR(10), 
+    IN _email 			VARCHAR(100),
+    IN _pass 			VARCHAR(20),
+    IN _imagen 			VARCHAR(50),
+    IN _tipo_usuario 	VARCHAR(30),
+    IN _tipo_tarjeta 	VARCHAR(100)
+)
+BEGIN
+	INSERT INTO usuarios (nombre, direccion, ciudad, telefono, email, pass, imagen, tipo_usuario, tipo_tarjeta)  VALUES
+	(_nombre, _direccion, _ciudad, _tel, _email, _pass, _imagen, _tipo_usuario, _tipo_tarjeta);
+END//
+DELIMITER ;
+
+
+
+2. Procedimiento almacenado para mostrar todos los clientes.
+DELIMITER //
+CREATE PROCEDURE spShowClients
+( )
+BEGIN
+	SELECT *
+    FROM usuarios AS u
+    WHERE u.tipo_usuario = 'Cliente';
+END//
+DELIMITER ;
+
+
+
+3. Procedimiento almacenado para eliminar clientes.
+DELIMITER //
+CREATE PROCEDURE spDeleteClient
+(
+	IN clientID 		INT,
+    IN imageName 		VARCHAR(50),
+    IN clientLocation 	VARCHAR(100)
+)
+BEGIN
+	DELETE FROM usuarios WHERE id = clientID;
+    DELETE FROM tarjetas_status WHERE nombre = imageName AND ciudad = clientLocation;
+END//
+DELIMITER ;
+
+
+
+4. Procedimiento almacenado seleccionar el nombre de imagen de un cliente en específico.
+DELIMITER //
+CREATE PROCEDURE spSelectClientImage
+(
+	IN clientID INT
+)
+BEGIN
+	SELECT u.imagen
+    FROM usuarios AS u
+    WHERE u.id = clientID;
+END//
+DELIMITER ;
+
+
+
+5. Procedimiento almacenado para seleccionar todos los datos de un cliente en específico.
+DELIMITER //
+CREATE PROCEDURE spGetClientData
+(
+	IN clientID INT
+)
+BEGIN
+	SELECT *
+    FROM usuarios AS u
+    WHERE u.id = clientID;
+END//
+DELIMITER ;
+
+
+
+
+6. Procedimiento almacenado para actualizar los datos de los clientes.
+DELIMITER //
+CREATE PROCEDURE spUpdateClient
+(
+    IN id_cliente			INT,
+    IN nombre_cliente 	 	VARCHAR(200),
+    IN direccion_cliente 	VARCHAR(200),
+    IN telefono_cliente 	 VARCHAR(10),
+    IN email_cliente 	 	VARCHAR(100),
+    IN tarjeta 				VARCHAR(50)
+)
+BEGIN
+	IF nombre_cliente IS NOT NULL THEN
+    	UPDATE usuarios
+        SET nombre = nombre_cliente
+        WHERE id = id_cliente;
+    END IF;
+    
+	IF direccion_cliente IS NOT NULL THEN
+    	UPDATE usuarios 
+        SET direccion = direccion_cliente
+        WHERE id = id_cliente;
+    END IF;
+    
+	IF telefono_cliente IS NOT NULL THEN
+    	UPDATE usuarios 
+        SET telefono = telefono_cliente
+        WHERE id = id_cliente;
+    END IF;
+    
+	IF email_cliente IS NOT NULL THEN
+    	UPDATE usuarios 
+        SET email = email_cliente
+        WHERE id = id_cliente;
+    END IF;
+    
+	IF tarjeta IS NOT NULL THEN
+    	UPDATE usuarios 
+        SET imagen = tarjeta
+        WHERE id = id_cliente;
+    END IF;
+END//
+DELIMITER ;
+
+
+
+7. Procedimiento almacenado seleccionar la ciudad de un cliente en específico.
+DELIMITER //
+CREATE PROCEDURE spSelectClientLocation
+(
+	IN clientID INT
+)
+BEGIN
+	SELECT u.ciudad, u.tipo_tarjeta
+    FROM usuarios AS u
+    WHERE u.id = clientID;
+END//
+DELIMITER ;
+
+
+
+8. Procedimiento almacenado para iniciar sesión.
+DELIMITER //
+CREATE PROCEDURE spLogin
+( 
+    IN _email	VARCHAR(100),
+    IN _pass 	VARCHAR(20)
+)
+BEGIN
+	SELECT * 
+    FROM usuarios
+    WHERE email = _email AND pass = _pass;
+END//
+DELIMITER ;
+
+
+
+9. Procedimiento almacenado para insertar en tarjetas status.
+DELIMITER //
+CREATE PROCEDURE spTarjetaStatus
+( 
+    IN _nombre	VARCHAR(200),
+    IN _ciudad	VARCHAR(100),
+    IN _tipo	VARCHAR(50)
+)
+BEGIN
+	INSERT INTO tarjetas_status(nombre, ciudad, tipo, fecha) 
+    VALUES (_nombre, _ciudad, _tipo, CURDATE());
+END//
+DELIMITER ;
+
+
+
+10. Procedimiento almacenado para mostrar la cantidad de visitas generales de una tarjeta de acuerdo al cliente que inicie sesión.
+DELIMITER //
+CREATE PROCEDURE spMostrarVisitas
+( 
+    IN nombre_tarjeta VARCHAR (100)
+)
+BEGIN
+	SELECT COUNT(ts.nombre) AS cantidad_visitas
+	FROM tarjetas_status AS ts
+	WHERE ts.nombre = nombre_tarjeta AND ts.tipo = 'Visita';
+END//
+DELIMITER ;
+
+
+
+11. Procedimiento almacenado para mostrar la cantidad de descargas generales de una tarjeta de acuerdo al cliente que inicie sesión.
+DELIMITER //
+CREATE PROCEDURE spMostrarDescargas
+( 
+    IN nombre_tarjeta VARCHAR (100)
+)
+BEGIN
+	SELECT COUNT(ts.nombre) AS cantidad_descargas
+	FROM tarjetas_status AS ts
+	WHERE ts.nombre = nombre_tarjeta AND ts.tipo = 'Descarga';
+END//
+DELIMITER ;
+
+
+
+12. Procedimiento almacenado para mostrar la cantidad de descargas de una tarjeta en una fecha específica de acuerdo al cliente que inicie sesión.
+DELIMITER //
+CREATE PROCEDURE spMostrarDescargasFecha
+(
+	IN nombre_tarjeta VARCHAR (100),
+    IN _fecha DATE
+)
+BEGIN
+	SELECT COUNT(ts.nombre) AS cantidad_descargas
+	FROM tarjetas_status AS ts
+	WHERE ts.nombre = nombre_tarjeta AND ts.fecha = _fecha AND ts.tipo = 'Descarga';
+END//
+DELIMITER ;
+
+
+
+13. Procedimiento almacenado para mostrar la cantidad de visitas de una tarjeta en una fecha específica de acuerdo al cliente que inicie sesión.
+DELIMITER //
+CREATE PROCEDURE spMostrarVisitasFecha
+(
+	IN nombre_tarjeta VARCHAR (100),
+    IN _fecha DATE
+)
+BEGIN
+	SELECT COUNT(ts.nombre) AS cantidad_visitas
+	FROM tarjetas_status AS ts
+	WHERE ts.nombre = nombre_tarjeta AND ts.fecha = _fecha AND ts.tipo = 'Visita';
+END//
+DELIMITER ;
+
+
+
+14. Procedimiento almacenado para mostrar la cantidad de descargas de una tarjeta entre dos fechas de acuerdo al cliente que inicie sesión.
+DELIMITER //
+CREATE PROCEDURE spMostrarDescargasRangoFecha
+(
+	IN nombre_tarjeta VARCHAR (100),
+    IN fecha_inicio DATE,
+    IN fecha_fin DATE
+)
+BEGIN
+	SELECT COUNT(ts.nombre) AS cantidad_descargas
+	FROM tarjetas_status AS ts
+	WHERE ts.nombre = nombre_tarjeta AND ts.fecha BETWEEN fecha_inicio AND fecha_fin AND ts.tipo = 'Descarga';
+END//
+DELIMITER ;
+
+
+
+15. Procedimiento almacenado para mostrar la cantidad de visitas de una tarjeta entre dos fechas de acuerdo al cliente que inicie sesión.
+DELIMITER //
+CREATE PROCEDURE spMostrarVisitasRangoFecha
+(
+	IN nombre_tarjeta VARCHAR (100),
+    IN fecha_inicio DATE,
+    IN fecha_fin DATE
+)
+BEGIN
+	SELECT COUNT(ts.nombre) AS cantidad_visitas
+	FROM tarjetas_status AS ts
+	WHERE ts.nombre = nombre_tarjeta AND ts.fecha BETWEEN fecha_inicio AND fecha_fin AND ts.tipo = 'Visita';
+END//
+DELIMITER ;
+
+
+
+16. Procedimiento almacenado contar todas las tarjetas que sean de Zihuatanejo y sean del tipo lugares.
+DELIMITER //
+CREATE PROCEDURE spContarTarjetasLugaresZihua
+()
+BEGIN
+	SELECT COUNT(u.nombre) AS cantidad
+	FROM usuarios AS u
+	WHERE u.Ciudad = 'Zihuatanejo' AND u.tipo_tarjeta = 'lugares';
+END//
+DELIMITER ;
+
+
+
+17. Procedimiento almacenado contar todas las tarjetas que sean de Zihuatanejo y sean del tipo restaurantes.
+DELIMITER //
+CREATE PROCEDURE spContarTarjetasRestZihua
+()
+BEGIN
+	SELECT COUNT(u.nombre) AS cantidad
+	FROM usuarios AS u
+	WHERE u.Ciudad = 'Zihuatanejo' AND u.tipo_tarjeta = 'restaurantes';
+END//
+DELIMITER ;
+
+
+
+18. Procedimiento almacenado contar todas las tarjetas que sean de Zihuatanejo y sean del tipo parques.
+DELIMITER //
+CREATE PROCEDURE spContarTarjetasParquesZihua
+()
+BEGIN
+	SELECT COUNT(u.nombre) AS cantidad
+	FROM usuarios AS u
+	WHERE u.Ciudad = 'Zihuatanejo' AND u.tipo_tarjeta = 'parques';
+END//
+DELIMITER ;
+
+
+
+19. Procedimiento almacenado contar todas las tarjetas que sean de Zihuatanejo y sean del tipo tiendas.
+DELIMITER //
+CREATE PROCEDURE spContarTarjetasTiendasZihua
+()
+BEGIN
+	SELECT COUNT(u.nombre) AS cantidad
+	FROM usuarios AS u
+	WHERE u.Ciudad = 'Zihuatanejo' AND u.tipo_tarjeta = 'tiendas';
+END//
+DELIMITER ;
+
+
+
+20. Procedimiento almacenado contar todas las tarjetas que sean de Zihuatanejo y sean del tipo servicios.
+DELIMITER //
+CREATE PROCEDURE spContarTarjetasServiciosZihua
+()
+BEGIN
+	SELECT COUNT(u.nombre) AS cantidad
+	FROM usuarios AS u
+	WHERE u.Ciudad = 'Zihuatanejo' AND u.tipo_tarjeta = 'servicios';
+END//
+DELIMITER ;

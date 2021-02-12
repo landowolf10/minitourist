@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!--
+    Demo by Ildar Sagdejev ( http://twitter.com/tknomad )
+  -->
+  <meta charset="UTF-8">
+  <title>Cloud 9 Carousel: JS / HTML5 / CSS3</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="/static/js/jquery.reflection.js"></script>
+        <script src="/static/js/jquery.cloud9carousel.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/carousel_style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div id="showcase" class="noselect">
+      <img class="cloud9-item" src="/static/img/Acapulco/Barra Vieja.jpg" alt="Firefox" height="400">
+      <img class="cloud9-item" src="/static/img/Acapulco/Believe.jpg" alt="Wyzo" height="400">
+      <img class="cloud9-item" src="/static/img/Acapulco/Beto´s.jpg" alt="Opera" height="400">
+      <img class="cloud9-item" src="/static/img/Acapulco/Coctelito.jpg" alt="Chrome" height="400">
+      <img class="cloud9-item" src="/static/img/Tarjetas/Acapulco/Malecón y Zócalo.jpg" alt="Internet Explorer" height="400">
+      <img class="cloud9-item" src="/static/img/Tarjetas/Acapulco/Pie de la Cuesta.jpg" alt="Safari" height="400">
+    </div>
+    <footer>
+      <p id="item-title">&nbsp;</p>
+      <div id="nav" class="noselect">
+        <button class="left">
+          ←
+        </button>
+        <button class="right">
+          →
+        </button>
+      </div>
+
+    </footer>
+  </div>
+
+  <script>
+    $(function() {
+      var showcase = $("#showcase")
+
+      showcase.Cloud9Carousel( {
+        yOrigin: 60,
+        yRadius: 20,
+        mirror: {
+          gap: 12,
+          height: 0.2
+        },
+        buttonLeft: $("#nav > .left"),
+        buttonRight: $("#nav > .right"),
+        autoPlay: 1,
+        bringToFront: true,
+        onLoaded: function() {
+          showcase.css( 'visibility', 'visible' )
+          showcase.css( 'display', 'none' )
+          showcase.fadeIn( 4000 )
+        }
+      } )
+
+
+      //
+      // Simulate physical button click effect
+      //
+      $('#nav > button').click( function( e ) {
+        var b = $(e.target).addClass( 'down' )
+        setTimeout( function() { b.removeClass( 'down' ) }, 80 )
+      } )
+
+      $(document).keydown( function( e ) {
+        //
+        // More codes: http://www.javascripter.net/faq/keycodes.htm
+        //
+        switch( e.keyCode ) {
+          /* left arrow */
+          case 37:
+            $('#nav > .left').click()
+            break
+
+          /* right arrow */
+          case 39:
+            $('#nav > .right').click()
+        }
+      } )
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Minitourist Cards</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icons -->
+    <link rel="icon" href="/static/img/logo.png" type="image/gif" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <!-- Site css -->
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="/static/css/responsive.css" />
+    <!-- colors css -->
+    <link rel="stylesheet" href="/static/css/colors1.css" />
+    <!-- wow Animation css -->
+    <link rel="stylesheet" href="/static/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/carousel_style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="https://kenwheeler.github.io/slick/slick/slick-theme.css">
+</head>
+
+<body id="default_theme" class="it_service">
+    <!-- header -->
+    <header id="default_header" class="header_style_1">
+        <!-- header top -->
+        <div class="header_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="full">
+                            <div class="topbar-left">
+                                <ul class="list-inline">
+                                    <li> <span class="topbar-label"><i class="fa fa-envelope-o"></i></span> <span class="topbar-hightlight"><a href="mailto:minitouristcards@gmail.com">minitouristcards@gmail.com</a></span> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 right_section_header_top">
+                        <div class="float-left">
+                            <div class="social_icon">
+                                <ul class="list-inline">
+                                    <li>
+                                        <a class="fa fa-facebook" href="https://www.facebook.com/" title="Facebook" target="_blank"></a>
+                                    </li>
+                                    <li>
+                                        <a class="fa fa-google-plus" href="https://plus.google.com/" title="Google+" target="_blank"></a>
+                                    </li>
+                                    <li>
+                                        <a class="fa fa-twitter" href="https://twitter.com" title="Twitter" target="_blank"></a>
+                                    </li>
+                                    <li>
+                                        <a class="fa fa-linkedin" href="https://www.linkedin.com" title="LinkedIn" target="_blank"></a>
+                                    </li>
+                                    <li>
+                                        <a class="fa fa-instagram" href="https://www.instagram.com" title="Instagram" target="_blank"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end header top -->
+        <!-- header bottom -->
+        <div class="header_bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <!-- logo start -->
+                        <div class="logo">
+                            <img src="/static/img/logo.png" alt="logo" />
+                        </div>
+                        <!-- logo end -->
+                    </div>
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <!-- menu start -->
+                        <div class="menu_side">
+                            <div id="navbar_menu">
+                                <ul class="first-ul">
+                                    <li> <a class="active" href="/">Inicio</a>
+                                    </li>
+                                    <li><a href="/quienes">Acerca de nosotros</a></li>
+                                    <li> <a href="#">Servicios</a>
+                                    </li>
+                                    <li> <a href="#">¿Qué son las Minitourist Cards?</a>
+                                    </li>
+                                    <li> <a href="#">Contáctanos</a>
+                                    </li>
+                                    <li> <a href="/login">Iniciar sesión</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--<div class="search_icon">
+                                <ul>
+                                    <li><a href="#" data-toggle="modal" data-target="#search_bar"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div> -->
+                        </div>
+                        <!-- menu end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header bottom end -->
+    </header>
+    <!-- end header -->
+
+
+
+    <section>
+        <div class="card-options">
+            <p id="show">
+                ZIHUATANEJO
+            </p>
+            <p id="show2">
+                ACAPULCO
+            </p>
+        </div>
+        <div>
+            <div class="slider hi-slide" id="slider">
+                {% for name in zihuatanejo_cards %}
+                <a>
+                    <img class="card" id="mini-card" src="{{url_for('static', filename='img/Zihuatanejo/' + name)}}">
+                </a>
+                {% endfor %}
+            </div>
+
+            <div class="slider2 hi-slide2" id="slider2" style="display: none;">
+                {% for name in acapulco_cards %}
+                <a>
+                    <img class="card-acapulco" id="mini-card" src="{{url_for('static', filename='img/Acapulco/' + name)}}">
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Modal Zihuatanejo -->
+        <div class="modal">
+            <span class="close">&times;</span>
+            <img class="modalImage" id="img01" />
+            <button onclick="download()" id="download">Descargar cupón</button>
+        </div>
+
+        <!-- Modal Acapulco -->
+        <div class="modal-acapulco">
+            <span class="close-acapulco">&times;</span>
+            <img class="modalImage-acapulco" id="acapulco" />
+            <button onclick="download()" id="download-acapulco">Descargar cupón</button>
+        </div>
+    </section>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+
+    <script type="text/javascript">
+        $(document).on("ready", function() {
+            $(".slider").slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: true,
+                autoplay: true,
+                autoplaySpeed: 5000
+            });
+        });
+
+        var url;
+        var card;
+
+        $(document).ready(function() {
+            // Listen for clicks to "img" elements inside the element where id="sinistra"
+            $("#slider img").click(function() {
+                // Displays the source of the image clicked
+                //alert($(this).attr("src"));
+                url = $(this).attr("src");
+                card = url.split("/").pop();
+
+                //alert(card);
+            });
+        });
+
+
+
+        /***********************************/
+
+
+
+        $(document).on("ready", function() {
+            $(".slider2").slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: true,
+                autoplay: true,
+                autoplaySpeed: 5000
+            });
+        });
+
+        var url2;
+        var card2;
+
+        $(document).ready(function() {
+            // Listen for clicks to "img" elements inside the element where id="sinistra"
+            $("#slider2 img").click(function() {
+                // Displays the source of the image clicked
+                //alert($(this).attr("src"));
+                url2 = $(this).attr("src");
+                card2 = url2.split("/").pop();
+
+                alert(card2);
+            });
+        });
+
+
+        /**********************************/
+
+
+
+        var modalEle = document.querySelector(".modal");
+        var modalImage = document.querySelector(".modalImage");
+
+        Array.from(document.querySelectorAll(".card")).forEach(item => {
+            item.addEventListener("click", event => {
+                modalEle.style.display = "block";
+                modalImage.src = event.target.src;
+            });
+        });
+
+        document.querySelector(".close").addEventListener("click", () => {
+            modalEle.style.display = "none";
+        });
+
+        function download() {
+            axios({
+                url: url,
+                method: "GET",
+                responseType: "blob"
+            }).then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement("a");
+
+                link.href = url;
+                link.setAttribute("download", card);
+
+                document.body.appendChild(link);
+
+                link.click();
+            });
+        }
+
+
+
+
+        /**********************************/
+
+
+        var modalEle2 = document.querySelector(".modal-acapulco");
+        var modalImage2 = document.querySelector(".modalImage-acapulco");
+
+        Array.from(document.querySelectorAll(".card-acapulco")).forEach(item => {
+            item.addEventListener("click", event => {
+                modalEle2.style.display = "block";
+                modalImage2.src = event.target.src;
+            });
+        });
+
+        document.querySelector(".close-acapulco").addEventListener("click", () => {
+            modalEle2.style.display = "none";
+        });
+
+        /*function download() {
+            axios({
+                url: url2,
+                method: "GET",
+                responseType: "blob"
+            }).then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement("a");
+
+                link.href = url2;
+                link.setAttribute("download", card2);
+
+                document.body.appendChild(link);
+
+                link.click();
+            });
+        }*/
+
+
+        /**********************************/
+    </script>
+
+
+
+
+    <!-- section -->
+    <div class="section padding_layout_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <div class="main_heading text_align_center">
+                            <h2>¿Por qué te convienen las Minitourist Cards?</h2>
+                            <p class="large">¡Haz crecer tu negocio!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="full text_align_center margin_bottom_30">
+                        <div class="center">
+                            <div class="icon"> <img src="/static/img/graphic.jpg" alt="#" /> </div>
+                        </div>
+                        <h4 class="theme_color">Da a conocer tu negocio</h4>
+                        <p>¡Haz que más personas conozcan tu negocio!</p>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="full text_align_center margin_bottom_30">
+                        <div class="center">
+                            <div class="icon"> <img src="/static/img/it_service/i2.png" alt="#" /> </div>
+                        </div>
+                        <h4 class="theme_color">Computer repair</h4>
+                        <p>Perspiciatis eos quos totam cum minima aut!</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="full text_align_center margin_bottom_30">
+                        <div class="center">
+                            <div class="icon"> <img src="/static/img/it_service/i3.png" alt="#" /> </div>
+                        </div>
+                        <h4 class="theme_color">Mobile service</h4>
+                        <p>Perspiciatis eos quos totam cum minima aut!</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="full text_align_center margin_bottom_30 margin_0">
+                        <div class="center">
+                            <div class="icon"> <img src="/static/img/it_service/i4.png" alt="#" /> </div>
+                        </div>
+                        <h4 class="theme_color">Network solutions</h4>
+                        <p>Perspiciatis eos quos totam cum minima aut!</p>
+                    </div>
+                </div> -->
+            </div>
+            <!-- <div class="row" style="margin-top: 35px">
+                <div class="col-md-8">
+                    <div class="full margin_bottom_30">
+                        <div class="accordion border_circle">
+                            <div class="bs-example">
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <p class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa fa-bar-chart" aria-hidden="true"></i> Complete Recovery from Local & External Drive<i class="fa fa-angle-down"></i></a> </p>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
+                                                    Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered
+                                                    the undoubtable source. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <p class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa fa-plane"></i> Recovery Photo, Image, Video and Audio<i class="fa fa-angle-down"></i></a> </p>
+                                        </div>
+                                        <div id="collapseTwo" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
+                                                    Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered
+                                                    the undoubtable source. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <p class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><i class="fa fa-star"></i> Mobile Phone Recovery<i class="fa fa-angle-down"></i></a> </p>
+                                        </div>
+                                        <div id="collapseThree" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
+                                                    Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered
+                                                    the undoubtable source. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <p class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><i class="fa fa-bar-chart" aria-hidden="true"></i> Complete Recovery from Local & External Drive<i class="fa fa-angle-down"></i></a> </p>
+                                        </div>
+                                        <div id="collapseFour" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
+                                                    Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered
+                                                    the undoubtable source. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+            <!-- end section -->
+            <!-- section -->
+            <div class="section padding_layout_1 testmonial_section white_fonts">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="full">
+                                <div class="main_heading text_align_left">
+                                    <h2 style="text-transform: none;">¿Qué dicen nuestros clientes?</h2>
+                                    <p class="large">Aquí está el testimonio de nuestros clientes...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <div class="full">
+                                <div id="testimonial_slider" class="carousel slide" data-ride="carousel">
+                                    <!-- Indicators -->
+                                    <ul class="carousel-indicators">
+                                        <li data-target="#testimonial_slider" data-slide-to="0" class="active"></li>
+                                        <li data-target="#testimonial_slider" data-slide-to="1"></li>
+                                        <li data-target="#testimonial_slider" data-slide-to="2"></li>
+                                    </ul>
+                                    <!-- The slideshow -->
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <div class="testimonial-container">
+                                                <div class="testimonial-content"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe officia corrupti perspiciatis nam, qui minima possimus assumenda vero sint a nemo soluta voluptas laudantium velit aperiam id ducimus modi
+                                                    dignissimos?
+                                                </div>
+                                                <div class="testimonial-photo"> <img src="/static/img/it_service/client1.jpg" class="img-responsive" alt="#" width="150" height="150"> </div>
+                                                <div class="testimonial-meta">
+                                                    <h4>Maria Anderson</h4>
+                                                    <span class="testimonial-position">CFO, Tech NY</span> </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="testimonial-container">
+                                                <div class="testimonial-content"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla labore, earum est ad aperiam praesentium aliquid placeat ea nostrum ullam qui eaque, libero quam nobis rerum ducimus, et ipsam quaerat. </div>
+                                                <div class="testimonial-photo"> <img src="/static/img/it_service/client2.jpg" class="img-responsive" alt="#" width="150" height="150"> </div>
+                                                <div class="testimonial-meta">
+                                                    <h4>Maria Anderson</h4>
+                                                    <span class="testimonial-position">CFO, Tech NY</span> </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="testimonial-container">
+                                                <div class="testimonial-content"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci officiis reprehenderit eaque error libero, deleniti alias similique quis, sed voluptates natus enim cupiditate. Necessitatibus aut, tempora
+                                                    repellendus amet eveniet commodi. </div>
+                                                <div class="testimonial-photo"> <img src="/static/img/it_service/client3.jpg" class="img-responsive" alt="#" width="150" height="150"> </div>
+                                                <div class="testimonial-meta">
+                                                    <h4>Maria Anderson</h4>
+                                                    <span class="testimonial-position">CFO, Tech NY</span> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="full"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end section -->
+            <footer class="footer_style_2">
+                <div class="cprt">
+                    <p>Minitourist Cards © Copyrights 2020</p>
+                </div>
+            </footer>
+            <!-- js section 
+    <script src="/static/js/jquery.min.js"></script>-->
+            <script src="/static/js/bootstrap.min.js"></script>
+            <!-- menu js -->
+            <script src="/static/js/menumaker.js"></script>
+            <!-- wow animation -->
+            <script src="/static/js/wow.js"></script>
+            <!-- custom js -->
+            <script src="/static/js/custom.js"></script>
+
+            <script>
+                $(document).ready(function() {
+                    $('#show').click(function() {
+                        $('.slider').toggle();
+                        $('.slider2').hide();
+                    });
+                });
+
+                $(document).ready(function() {
+                    $('#show2').click(function() {
+                        $('.slider2').toggle();
+                        $('.slider').hide();
+                    });
+                });
+            </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+a:hover {
+    background-color: red;
+    color: white;
+}
+
+.menu .nav .current {
+    background-color: red;
+    color: white;
+}
+
+.logo {
+    text-align: right;
+}
+
+.menu .nav-tabs {
+    border-bottom:1px solid #333;
+    list-style: none;
+    padding: 0;
+    background-color: rgb(153, 149, 149);
+    text-align: center; /* step 6 */
+}
+
+.menu .nav-tabs a {
+  display: block; /* step 2 */
+  text-decoration: none; /* step 3 */
+}
+
+.menu .nav-tabs .left {
+    float:left;
+    margin-left: 5px;
+}
+
+.menu .nav-tabs li:first-child {
+    margin-left: 0;
+}
+
+.menu .nav-tabs li a {
+    float: left;
+    border: 1px solid #222;
+    border-bottom-width: 0;
+}
+
+.menu .nav-tabs li span {
+    float: left;
+    padding: 10px 25px;
+    border: 1px solid #333;
+    border-bottom-width: 0;
+    text-align: center
+}
+
+.menu .nav-tabs .login .right {
+    float: right;;
+    margin-right: 5px;
+}
+
+.menu .nav-tabs .login .right li a {
+    float: right;
+    border: 1px solid #222;
+    border-bottom-width: 0;
+}
+
+.menu .nav-tabs .login .right li span {
+    float: right;
+    padding: 10px 25px;
+    border: 1px solid #333;
+    border-bottom-width: 0;
+    text-align: center
+}

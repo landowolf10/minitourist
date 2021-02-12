@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Minitourist Cards</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icons -->
+    <link rel="icon" href="images/fevicon/fevicon.png" type="image/gif" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <!-- Site css -->
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="/static/css/responsive.css" />
+    <!-- colors css -->
+    <link rel="stylesheet" href="/static/css/colors1.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="/static/css/custom.css" />
+    <!-- wow Animation css -->
+    <link rel="stylesheet" href="/static/css/animate.css" />
+    <link rel="stylesheet" href="/static/css/login_style.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- header -->
+    <header id="default_header" class="header_style_1">
+        <!-- header top -->
+        <div class="header_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="full">
+                            <div class="topbar-left">
+                                <ul class="list-inline">
+
+                                    <div class="float-left">
+                                        <div class="social_icon">
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <a class="fa fa-facebook" href="https://www.facebook.com/"
+                                                        title="Facebook" target="_blank"></a>
+                                                </li>
+                                                <li>
+                                                    <a class="fa fa-google-plus" href="https://plus.google.com/"
+                                                        title="Google+" target="_blank"></a>
+                                                </li>
+                                                <li>
+                                                    <a class="fa fa-twitter" href="https://twitter.com" title="Twitter"
+                                                        target="_blank"></a>
+                                                </li>
+                                                <li>
+                                                    <a class="fa fa-linkedin" href="https://www.linkedin.com"
+                                                        title="LinkedIn" target="_blank"></a>
+                                                </li>
+                                                <li>
+                                                    <a class="fa fa-instagram" href="https://www.instagram.com"
+                                                        title="Instagram" target="_blank"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 right_section_header_top">
+                        <div class="social_icon">
+                            <ul class="list-inline">
+                                {% if logged_in %}
+                                <li>
+                                    <a href="/logout" style="text-align: left;">Cerrar sesión</a>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a href="/login" style="text-align: left;">Iniciar sesión</a>
+                                </li>
+                                {% endif %}
+                                <li>
+                                    <a href="/tarjeta_status" style="text-align: left;">Dashboard</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end header top -->
+        <!-- header bottom -->
+        <div class="header_bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <!-- logo start -->
+                        <div class="logo">
+                            <img src="/static/img/logo.png" alt="logo" />
+                        </div>
+                        <!-- logo end -->
+                    </div>
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <!-- menu start -->
+                        <div class="menu_side">
+                            <div id="navbar_menu">
+                                <ul class="first-ul">
+                                    <li> <a href="/">Inicio</a>
+                                    </li>
+                                    <li><a href="/quienes">Acerca de nosotros</a></li>
+                                    </li>
+                                    <li> <a href="/mt">¿Qué son las Minitourist Cards?</a>
+                                    </li>
+                                    <li> <a href="/contacto">Contáctanos</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- menu end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header bottom end -->
+    </header>
+    <!-- end header -->
+
+
+    <form action="/show_all" method="POST">
+        <legend>Visitas y descargas generales</legend>
+        <p>
+            Visitas generales: {{ visitas }}
+        </p>
+    
+        <br>
+    
+        <p>
+            Descargas generales: {{ descargas }}
+        </p>
+    
+        <!-- <button type="submit ">
+            Mostrar visitas
+        </button> -->
+    </form>
+
+    <form>
+        <legend>Visitas y descargas de una fecha específica</legend>
+        <div class="form-group">
+            <div class='input-group date' id='datepicker'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                <input type="hidden" name="date" value="date" id="date"/>
+            </div>
+            <p id="visitas"></p>
+            <p id="descargas">
+            </p>
+        </div>
+    </form>
+    <button onclick="getDate()">Mostrar</button>
+
+    <form>
+        <legend>Visitas y descargas en un rago de fechas</legend>
+        <div class="form-group">
+            <div class='input-group date' id='datepicker-range'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                <input type="hidden" name="date" value="date" id="first-date-range"/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class='input-group date' id='datepicker-range2'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                <input type="hidden" name="date" value="date" id="second-date-range"/>
+            </div>
+        </div>
+        <p id="visitas-rango"></p>
+        <p id="descargas-rango">
+    </form>
+    <button onclick="getDateRange()">Mostrar</button>
+
+    <!-- js section -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!-- menu js -->
+    <script src="/static/js/menumaker.js"></script>
+    <!-- wow animation -->
+    <script src="/static/js/wow.js"></script>
+    <!-- custom js -->
+    <script src="/static/js/custom.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+	<script >
+	    $(function () {
+	        $('#datepicker-range').datepicker({
+	            format: "yyyy/mm/dd",
+	            todayHighlight: true,
+		        showOtherMonths: true,
+		        selectOtherMonths: true,
+		        autoclose: true,
+		        changeMonth: true,
+		        changeYear: true,
+                orientation: "button",
+                onSelect: function(dateText, inst) {
+                    $("input[id='first-date-range']").val(dateText);
+                }
+            });
+
+            $('#datepicker-range2').datepicker({
+	            format: "yyyy/mm/dd",
+	            todayHighlight: true,
+		        showOtherMonths: true,
+		        selectOtherMonths: true,
+		        autoclose: true,
+		        changeMonth: true,
+		        changeYear: true,
+                orientation: "button",
+                onSelect: function(dateText, inst) {
+                    $("input[id='second-date-range']").val(dateText);
+                }
+            });
+
+            $('#datepicker').datepicker({
+	            format: "yyyy/mm/dd",
+	            todayHighlight: true,
+		        showOtherMonths: true,
+		        selectOtherMonths: true,
+		        autoclose: true,
+		        changeMonth: true,
+		        changeYear: true,
+                orientation: "button",
+                onSelect: function(dateText, inst) {
+                    $("input[id='date']").val(dateText);
+                }
+            });
+        });
+        
+        function getDate()
+        {
+            let date = document.getElementById('date').value;
+
+            if((date.includes('-') || date.includes('/')))
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "/show_card_info_date",
+                    contentType: "application/json",
+                    data: JSON.stringify({fecha: date}),
+                    dataType: "json",
+                    success: function(response) {
+                        document.getElementById('visitas').innerHTML = 'Visitas: ' + response.visitas;
+                        document.getElementById('descargas').innerHTML = 'Descargas: ' + response.descargas;
+                    },
+                    error: function(err) {
+                        console.log('ERROR: ', err);
+                    }
+                });
+            }
+            else
+                alert('Seleccione una fecha');
+        }
+
+        function getDateRange()
+        {
+            let date = document.getElementById('first-date-range').value;
+            let date2 = document.getElementById('second-date-range').value;
+
+            if((date.includes('-') || date.includes('/')) && (date2.includes('-') || date2.includes('/')))
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "/show_card_info_range",
+                    contentType: "application/json",
+                    data: JSON.stringify({fecha_inicio: date, fecha_fin: date2}),
+                    dataType: "json",
+                    success: function(response) {
+                        document.getElementById('visitas-rango').innerHTML = 'Visitas: ' + response.visitas;
+                        document.getElementById('descargas-rango').innerHTML = 'Descargas: ' + response.descargas;
+                    },
+                    error: function(err) {
+                        console.log('ERROR: ', err);
+                    }
+                });
+            }
+            else
+                alert('Seleccione ambas fechas');
+        }
+	</script>
+</body>
+
+</html>

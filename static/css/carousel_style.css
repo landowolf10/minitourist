@@ -1,0 +1,330 @@
+.logo {
+    width: 200px;
+}
+
+.table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.not-exists-message {
+    text-align: center;
+}
+
+section {
+    background: #ffdeb887;
+}
+
+.slider-acapulco span:hover {
+    opacity: 0.7;
+}
+
+.slider-acapulco span {
+    display: block;
+    transform: translate(0, 0) scale(.7);
+    transition: all .7s ease;
+    opacity: .5;
+}
+
+.slider-restaurantes span:hover {
+    opacity: 0.7;
+}
+
+.slider-restaurantes span {
+    display: block;
+    transform: translate(0, 0) scale(.7);
+    transition: all .7s ease;
+    opacity: .5;
+}
+
+.slider-lugares span:hover {
+    opacity: 0.7;
+}
+
+.slider-lugares span {
+    display: block;
+    transform: translate(0, 0) scale(.7);
+    transition: all .7s ease;
+    opacity: .5;
+}
+
+.slider-parques span:hover {
+    opacity: 0.7;
+}
+
+.slider-parques span {
+    display: block;
+    transform: translate(0, 0) scale(.7);
+    transition: all .7s ease;
+    opacity: .5;
+}
+
+.slider-tiendas span:hover {
+    opacity: 0.7;
+}
+
+.slider-tiendas span {
+    display: block;
+    transform: translate(0, 0) scale(.7);
+    transition: all .7s ease;
+    opacity: .5;
+}
+
+.slider-servicios span:hover {
+    opacity: 0.7;
+}
+
+.slider-servicios span {
+    display: block;
+    transform: translate(0, 0) scale(.7);
+    transition: all .7s ease;
+    opacity: .5;
+}
+
+.slider-restaurantes-single span:hover {
+    opacity: 0.7;
+}
+
+.slider-restaurantes-single span {
+    display: block;
+    transform: translate(0, 0) scale(.7);
+    transition: all .7s ease;
+    opacity: .5;
+}
+
+.slider-lugares-single span:hover {
+    opacity: 0.7;
+}
+
+.slider-lugares-single span {
+    display: block;
+    transform: translate(0, 0) scale(.7);
+    transition: all .7s ease;
+    opacity: .5;
+}
+
+.slider-parques-single span:hover {
+    opacity: 0.7;
+}
+
+.slider-parques-single span {
+    display: block;
+    transform: translate(0, 0) scale(.7);
+    transition: all .7s ease;
+    opacity: .5;
+}
+
+.slider-tiendas-single span {
+    display: block;
+    transform: translate(0, 0) scale(.7);
+    transition: all .7s ease;
+    opacity: .5;
+}
+
+.slider-tiendas-single span:hover {
+    opacity: 0.7;
+}
+
+.slick-slide.slick-center span {
+    z-index: 1;
+    transform: scale(1);
+    opacity: 1;
+}
+
+.slider-servicios-single span {
+    display: block;
+    transform: translate(0, 0) scale(.7);
+    transition: all .7s ease;
+    opacity: .5;
+}
+
+.slider-servicios-single span:hover {
+    opacity: 0.7;
+}
+
+.card-options p:hover {
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    border-radius: 10px 10px 0px 0px;
+}
+
+.modal-acapulco {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-restaurantes {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-lugares {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-parques {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-tiendas {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-servicios {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modalImage-acapulco {
+    margin: auto;
+    display: block;
+    width: 30%;
+    height: 60%;
+    max-width: 300px;
+}
+
+.btn {
+    background-color: rgb(255, 0, 0);
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.btn:hover {
+    background-color: rgb(248, 74, 74);
+}
+
+section .card-options {
+    text-align: center;
+}
+
+.close-zihua {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close-zihua:hover,
+.close-zihua:focus {
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+}
+
+.close-acapulco {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close-acapulco:hover,
+.close-acapulco:focus {
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+}
+  
+  
+.default_header .header_top .container .row .col-md-4 .dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+.default_header .header_top .container .row .col-md-4 .dropdown .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+
+  
+.default_header .header_top .container .row .col-md-4 .dropdown:hover .dropdown-content {display: block;}
+
+@media only screen and (max-width: 700px) {
+    .modalImage {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .modalImage-acapulco {
+        width: 100%;
+    }
+}

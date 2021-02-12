@@ -1,0 +1,14 @@
+.slider-acapulco span {
+    display: block;
+    height: 600px;
+    position: relative;
+    transform: translate(0, 0) scale(.7);
+    transition: all .7s ease;
+    opacity: .5;
+}
+
+.slick-slide.slick-center span {
+    z-index: 1;
+    transform: scale(1);
+    opacity: 1;
+}

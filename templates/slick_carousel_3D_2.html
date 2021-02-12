@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>轮播图</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/slick_carousel2.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="https://kenwheeler.github.io/slick/slick/slick-theme.css">
+</head>
+
+<body>
+    <div class="slider-acapulco">
+        {% for name in image_names %}
+        <div>
+            <span>
+                
+                <img class="card-acapulco" id="mini-card" src="{{url_for('static', filename='img/Acapulco/' + name)}}" height="600">
+                
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+    <script>
+        $(document).on("ready", function() {
+            $(".slider-acapulco").slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                dots: true,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                centerMode: true
+            });
+        });
+    </script>
+</body>
+
+</html>

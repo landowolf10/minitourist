@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/flip_style.css" />
+    <script type="text/javascript" src="/static/js/flip_example.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/carousel_style.css">
+    <script type="text/javascript" src="/static/js/slick-carousel.js"></script>
+</head>
+
+<body onload="flip();">
+    <div class="slider-acapulco">
+        {% for name in acapulco_cards %}
+        <div>
+            <span>
+                <img class="img-responsive card-acapulco" id="mini-card" src="{{url_for('static', filename='img/Acapulco/Frente/' + name)}}" style="width:100%" onclick="openModal(); currentSlide('{{acapulco_cards.index(name) + 1}}')">
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Modal Acapulco -->
+    <div id="myModal" class="modal-acapulco">
+        <span class="close-acapulco" onclick="closeModal();">&times;</span>
+        <div class="modal-content">
+            {% for name in acapulco_cards %}
+            <div class="mySlides">
+                <div class="scene scene--card">
+                    <div class="card">
+                        <div class="card__face card__face--front">
+                            <img class="img-responsive card-acapulco" id="mini-card" src="{{url_for('static', filename='img/Acapulco/Frente/' + name)}}" height="500">
+                        </div>
+                        <div class="card__face card__face--back">
+                            <img class="img-responsive card-acapulco" id="mini-card" src="{{url_for('static', filename='img/Acapulco/Atras/' + name)}}" height="500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button onclick="download()" id="download-acapulco">Descargar cupón</button>
+    </div>
+
+
+    <script type="text/javascript">
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+        }
+    </script>
+</body>
+
+</html>
