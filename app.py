@@ -372,11 +372,11 @@ def insertarTarjetaVisitaDescarga():
 
 @app.route('/tarjeta_status')
 def tarjetaStatus():
-    status = getCardStatus()
     dashboardRedirect = ''
 
     if "user" in session:
         getAllClients()
+        status = getCardStatus()
 
         sessionInitialized = False
 
