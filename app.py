@@ -39,20 +39,15 @@ def index():
     zihuatanejo_lugares = [file for file in os.listdir('./static/img/Zihuatanejo/Frente/lugares/') if file.endswith('.jpg')]
     zihuatanejo_tiendas = [file for file in os.listdir('./static/img/Zihuatanejo/Frente/tiendas/') if file.endswith('.jpg')]
     zihuatanejo_servicios = [file for file in os.listdir('./static/img/Zihuatanejo/Frente/servicios/') if file.endswith('.jpg')]
-    #os.listdir('./static/img/Zihuatanejo/Frente/*.jpg')
 
-
-    acapulco_cards = [file for file in os.listdir('./static/img/Acapulco/Frente/') if file.endswith('.jpg')]
-    #os.listdir('./static/img/Acapulco/Frente/')
-    print('TARJETAS ACAPULCO: ' + str(acapulco_cards))
+    acapulco_parques = [file for file in os.listdir('./static/img/Acapulco/Frente/parques/') if file.endswith('.jpg')]
+    acapulco_restaurantes = [file for file in os.listdir('./static/img/Acapulco/Frente/restaurantes/') if file.endswith('.jpg')]
+    acapulco_lugares = [file for file in os.listdir('./static/img/Acapulco/Frente/lugares/') if file.endswith('.jpg')]
+    acapulco_tiendas = [file for file in os.listdir('./static/img/Acapulco/Frente/tiendas/') if file.endswith('.jpg')]
+    acapulco_servicios = [file for file in os.listdir('./static/img/Acapulco/Frente/servicios/') if file.endswith('.jpg')]
 
     sessionInitialized = False
     tipoUsuario = ''
-
-    """if 'tipo_usuario' in session:
-        tipoUsuario = 'Admin'
-    else:
-        tipoUsuario = 'Cliente'"""
 
     if 'user' in session:
         sessionInitialized = True
@@ -63,7 +58,8 @@ def index():
 
     return render_template('index.html', zihuatanejo_parques = zihuatanejo_parques, zihuatanejo_restaurantes = zihuatanejo_restaurantes,
         zihuatanejo_lugares = zihuatanejo_lugares, zihuatanejo_tiendas = zihuatanejo_tiendas, zihuatanejo_servicios = zihuatanejo_servicios,
-        acapulco_cards = acapulco_cards, logged_in = sessionInitialized)
+        acapulco_parques = acapulco_parques, acapulco_restaurantes = acapulco_restaurantes, acapulco_lugares = acapulco_lugares,
+        acapulco_tiendas = acapulco_tiendas, acapulco_servicios = acapulco_servicios, logged_in = sessionInitialized)
 
 @app.route('/quienes')
 def quienesSomos():
@@ -147,8 +143,6 @@ def insertClient():
         fileName = secure_filename(f.filename)
 
         if location == 'Zihuatanejo':
-            #f.save(os.path.join('./static/img/Zihuatanejo/Frente', fileName))
-
             if card_type == 'lugares':
                 f.save(os.path.join('./static/img/Zihuatanejo/Frente/lugares', fileName))
             elif card_type == 'parques':
@@ -160,7 +154,16 @@ def insertClient():
             elif card_type == 'tiendas':
                 f.save(os.path.join('./static/img/Zihuatanejo/Frente/tiendas', fileName))
         elif location == 'Acapulco':
-            f.save(os.path.join('./static/img/Acapulco/Frente', fileName))
+            if card_type == 'lugares':
+                f.save(os.path.join('./static/img/Acapulco/Frente/lugares', fileName))
+            elif card_type == 'parques':
+                f.save(os.path.join('./static/img/Acapulco/Frente/parques', fileName))
+            elif card_type == 'restaurantes':
+                f.save(os.path.join('./static/img/Acapulco/Frente/restaurantes', fileName))
+            elif card_type == 'servicios':
+                f.save(os.path.join('./static/img/Acapulco/Frente/servicios', fileName))
+            elif card_type == 'tiendas':
+                f.save(os.path.join('./static/img/Acapulco/Frente/tiendas', fileName))
 
         print(nombre)
         print(direccion)
@@ -230,6 +233,16 @@ def updateClient(id):
                 print('fileName: ' + fileName)
 
                 if location == 'Zihuatanejo':
+                    clientLocation = selectClientLocation(id)
+                    #image = selectOldClientImage(, clientLocation)
+
+                    newClientImage = newCard.replace(' ', '_')
+
+                    conn2 = mysql.connect()
+                    cursor2 = conn2.cursor()
+                    cursor2.callproc('spUpdateOldImage', (newClientImage, oldImage, clientLocation[0]))
+                    conn2.commit()
+
                     if cardType == 'parques':
                         f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, fileName))
                     elif cardType == 'restaurantes':
@@ -242,24 +255,6 @@ def updateClient(id):
                         f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, fileName))
                 elif location == 'Acapulco':
                     f.save(os.path.join('./static/img/Acapulco/Frente', fileName))
-            """else:
-                #deleteImage(oldImage, location, cardType)
-
-                newFileName = secure_filename(f.filename)
-
-                if location == 'Zihuatanejo':
-                    if cardType == 'parques':
-                        f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, newCard))
-                    elif cardType == 'restaurantes':
-                        f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, newCard))
-                    elif cardType == 'lugares':
-                        f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, newCard))
-                    elif cardType == 'tiendas':
-                        f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, newCard))
-                    elif cardType == 'servicios':
-                        f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, newCard))
-                elif location == 'Acapulco':
-                    f.save(os.path.join('./static/img/Acapulco/Frente', newCard))"""
 
             conn = mysql.connect()
             cursor = conn.cursor()
@@ -282,13 +277,17 @@ def deleteClient(id):
         cursor = conn.cursor()
         image = selectClientImage(id)
         clientLocation = selectClientLocation(id)
-        cursor.callproc('spDeleteClient', (id, image, clientLocation[0]))
+
+        clientImage = image.replace(' ', '_')
+
+        cursor.callproc('spDeleteClient', (id, clientImage, clientLocation[0]))
         conn.commit()
 
+        print('Image to delete: ' + clientImage)
         print('CLIENT LOCATION: ' + clientLocation[0])
         print('CARD TYPE: ' + clientLocation[1])
 
-        deleteImage(image, clientLocation[0], clientLocation[1])
+        deleteImage(clientImage, clientLocation[0], clientLocation[1])
 
         flash('Cliente eliminado correctamente')
 
@@ -533,6 +532,24 @@ def selectClientImage(id):
         cursor.close()
         conn.close()
 
+def selectOldClientImage(imageName, clientLocation):
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.callproc('spSelectOldImage', [imageName, clientLocation])
+        data = cursor.fetchall()
+
+        imageName = data[0][1]
+
+        print('imageName: ' + str(imageName))
+
+        return imageName
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
 def selectClientLocation(id):
     try:
         conn = mysql.connect()
@@ -691,6 +708,91 @@ def zihuaCardsServicios():
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.callproc('spContarTarjetasServiciosZihua')
+        data = cursor.fetchall()
+
+        print(data[0][0])
+
+        return str(data[0][0])
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+@app.route('/tarjetas_lugares_acapulco', methods=['GET'])
+def acapulcoCardsLugares():
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.callproc('spContarTarjetasLugaresAcapulco')
+        data = cursor.fetchall()
+
+        print('spContarTarjetasLugaresAcapulco: ' + str(data[0][0]))
+
+        return str(data[0][0])
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+@app.route('/tarjetas_restaurantes_acapulco', methods=['GET'])
+def acapulcoCardsRestaurantes():
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.callproc('spContarTarjetasRestAcapulco')
+        data = cursor.fetchall()
+
+        print(data[0][0])
+
+        return str(data[0][0])
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+@app.route('/tarjetas_parques_acapulco', methods=['GET'])
+def acapulcoCardsParques():
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.callproc('spContarTarjetasParquesAcapulco')
+        data = cursor.fetchall()
+
+        print(data[0][0])
+
+        return str(data[0][0])
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+@app.route('/tarjetas_tiendas_acapulco', methods=['GET'])
+def acapulcoCardsTiendas():
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.callproc('spContarTarjetasTiendasAcapulco')
+        data = cursor.fetchall()
+
+        print(data[0][0])
+
+        return str(data[0][0])
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+@app.route('/tarjetas_servicios_acapulco', methods=['GET'])
+def acapulcoCardsServicios():
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.callproc('spContarTarjetasServiciosAcapulco')
         data = cursor.fetchall()
 
         print(data[0][0])

@@ -316,16 +316,144 @@
                 </div>
             </div>
 
-            <div class="slider-acapulco" style="display: none;">
-                {% for name in acapulco_cards %}
+            <div class="slider-lugares-acapulco" id="slider-lugares-acapulco" style="display: none;">
+                {% for name in acapulco_lugares %}
                 <div>
                     <span>
-                        <img class="img-responsive card-acapulco" id="mini-card"
-                            src="{{url_for('static', filename='img/Acapulco/Frente/' + name)}}" style="width:100%"
-                            onclick="openModalAcapulco(); currentSlideAcapulco('{{acapulco_cards.index(name) + 1}}')">
+                        <img class="img-responsive card-acapulco" id="cards-lugares-acapulco"
+                            src="{{url_for('static', filename='img/Acapulco/Frente/lugares/' + name)}}" style="width:100%"
+                            onclick="openModalAcapulcoLugares(); currentSlideAcapulcoLugares('{{acapulco_lugares.index(name) + 1}}')">
                     </span>
                 </div>
                 {% endfor %}
+            </div>
+
+            <div class="slider-lugares-acapulco-single" id="slider-lugares-acapulco-single" style="display: none;" onclick="getImageNameSingleAcapulco('cards-lugares-acapulco');">
+                <div>
+                    <span>
+                        {% if acapulco_lugares|length >= 1 %}
+                            <img class="img-responsive card-acapulco" id="cards-lugares-acapulco"
+                                src="{{url_for('static', filename='img/Acapulco/Frente/lugares/' + acapulco_lugares[0])}}"
+                                style="width:100%"
+                                onclick="openModalAcapulcoLugares();">
+                        {% else %}
+                            <br>
+                            <h1 class="not-exists-message"> No existen clientes registrados en esta categoría </h1>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="slider-restaurantes-acapulco" id="slider-restaurantes-acapulco" style="display: none;">
+                {% for name in acapulco_restaurantes %}
+                <div>
+                    <span>
+                        <img class="img-responsive card-acapulco" id="cards-restaurantes-acapulco"
+                            src="{{url_for('static', filename='img/Acapulco/Frente/restaurantes/' + name)}}" style="width:100%"
+                            onclick="openModalAcapulcoRestaurantes(); currentSlideAcapulcoRestaurantes('{{acapulco_restaurantes.index(name) + 1}}')">
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="slider-restaurantes-acapulco-single" id="slider-restaurantes-acapulco-single" style="display: none;" onclick="getImageNameSingleAcapulco('cards-restaurantes-acapulco');">
+                <div>
+                    <span>
+                        {% if acapulco_restaurantes|length >= 1 %}
+                            <img class="img-responsive card-acapulco" id="cards-restaurantes-acapulco"
+                                src="{{url_for('static', filename='img/Acapulco/Frente/restaurantes/' + acapulco_restaurantes[0])}}"
+                                style="width:100%"
+                                onclick="openModalAcapulcoRestaurantes();">
+                        {% else %}
+                            <br>
+                            <h1 class="not-exists-message"> No existen clientes registrados en esta categoría </h1>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="slider-parques-acapulco" id="slider-parques-acapulco" style="display: none;">
+                {% for name in acapulco_parques %}
+                <div>
+                    <span>
+                        <img class="img-responsive card-acapulco" id="cards-parques-acapulco"
+                            src="{{url_for('static', filename='img/Acapulco/Frente/parques/' + name)}}" style="width:100%"
+                            onclick="openModalAcapulcoParques(); currentSlideAcapulcoParques('{{acapulco_parques.index(name) + 1}}')">
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="slider-parques-acapulco-single" id="slider-parques-acapulco-single" style="display: none;" onclick="getImageNameSingleAcapulco('cards-parques-acapulco');">
+                <div>
+                    <span>
+                        {% if acapulco_parques|length >= 1 %}
+                            <img class="img-responsive card-acapulco" id="cards-parques-acapulco"
+                                src="{{url_for('static', filename='img/Acapulco/Frente/parques/' + acapulco_parques[0])}}"
+                                style="width:100%"
+                                onclick="openModalAcapulcoParques();">
+                        {% else %}
+                            <br>
+                            <h1 class="not-exists-message"> No existen clientes registrados en esta categoría </h1>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="slider-tiendas-acapulco" id="slider-tiendas-acapulco" style="display: none;">
+                {% for name in acapulco_tiendas %}
+                <div>
+                    <span>
+                        <img class="img-responsive card-acapulco" id="cards-tiendas-acapulco"
+                            src="{{url_for('static', filename='img/Acapulco/Frente/tiendas/' + name)}}" style="width:100%"
+                            onclick="openModalAcapulcoTiendas(); currentSlideAcapulcoTiendas('{{acapulco_tiendas.index(name) + 1}}')">
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="slider-tiendas-acapulco-single" id="slider-tiendas-acapulco-single" style="display: none;" onclick="getImageNameSingleAcapulco('cards-tiendas-acapulco');">
+                <div>
+                    <span>
+                        {% if acapulco_tiendas|length >= 1 %}
+                            <img class="img-responsive card-acapulco" id="cards-tiendas-acapulco"
+                                src="{{url_for('static', filename='img/Acapulco/Frente/tiendas/' + acapulco_tiendas[0])}}"
+                                style="width:100%"
+                                onclick="openModalAcapulcoTiendas();">
+                        {% else %}
+                            <br>
+                            <h1 class="not-exists-message"> No existen clientes registrados en esta categoría </h1>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="slider-servicios-acapulco" id="slider-servicios-acapulco" style="display: none;">
+                {% for name in acapulco_servicios %}
+                <div>
+                    <span>
+                        <img class="img-responsive card-acapulco" id="cards-servicios-acapulco"
+                            src="{{url_for('static', filename='img/Acapulco/Frente/servicios/' + name)}}" style="width:100%"
+                            onclick="openModalAcapulcoServicios(); currentSlideAcapulcoServicios('{{acapulco_servicios.index(name) + 1}}')">
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="slider-servicios-acapulco-single" id="slider-servicios-acapulco-single" style="display: none;" onclick="getImageNameSingleAcapulco('cards-servicios-acapulco');">
+                <div>
+                    <span>
+                        {% if acapulco_servicios|length >= 1 %}
+                            <img class="img-responsive card-acapulco" id="cards-servicios-acapulco"
+                                src="{{url_for('static', filename='img/Acapulco/Frente/servicios/' + acapulco_servicios[0])}}"
+                                style="width:100%"
+                                onclick="openModalAcapulcoServicios();">
+                        {% else %}
+                            <br>
+                            <h1 class="not-exists-message"> No existen clientes registrados en esta categoría </h1>
+                        {% endif %}
+                    </span>
+                </div>
             </div>
         </div>
 
@@ -464,21 +592,21 @@
         </div>
         <!-- End modal Servicios -->
 
-        <!-- Modal Acapulco -->
-        <div id="modalAcapulco" class="modal-acapulco">
-            <span class="close-acapulco" onclick="closeModalAcapulco();">&times;</span>
+        <!-- Modal lugares Acapulco -->
+        <div id="modalLugaresAcapulco" class="modal-lugares-acapulco">
+            <span class="close-acapulco" onclick="closeModalLugaresAcapulco();">&times;</span>
             <div class="modal-content">
-                {% for name in acapulco_cards %}
-                <div class="slidesAcapulco">
+                {% for name in acapulco_lugares %}
+                <div class="slidesAcapulcoLugares">
                     <div class="scene scene--card">
                         <div class="card">
                             <div class="card__face card__face--front">
                                 <img class="img-responsive card-acapulco" id="mini-card"
-                                    src="{{url_for('static', filename='img/Acapulco/Frente/' + name)}}" height="500">
+                                    src="{{url_for('static', filename='img/Acapulco/Frente/lugares/' + name)}}" height="500">
                             </div>
                             <div class="card__face card__face--back">
                                 <img class="img-responsive card-acapulco" id="mini-card"
-                                    src="{{url_for('static', filename='img/Acapulco/Atras/' + name)}}" height="500">
+                                    src="{{url_for('static', filename='img/Acapulco/Frente/lugares/' + name)}}" height="500">
                             </div>
                         </div>
                     </div>
@@ -487,28 +615,130 @@
             </div>
             <button onclick="downloadAcapulco();" class="btn"><i class="fa fa-download"></i>Descargar cupón</button>
         </div>
+        <!-- End modal lugares Acapulco -->
+
+        <!-- Modal restaurantes Acapulco -->
+        <div id="modalRestaurantesAcapulco" class="modal-restaurantes-acapulco">
+            <span class="close-acapulco" onclick="closeModalRestaurantesAcapulco();">&times;</span>
+            <div class="modal-content">
+                {% for name in acapulco_restaurantes %}
+                <div class="slidesAcapulcoRestaurantes">
+                    <div class="scene scene--card">
+                        <div class="card">
+                            <div class="card__face card__face--front">
+                                <img class="img-responsive card-acapulco" id="mini-card"
+                                    src="{{url_for('static', filename='img/Acapulco/Frente/restaurantes/' + name)}}" height="500">
+                            </div>
+                            <div class="card__face card__face--back">
+                                <img class="img-responsive card-acapulco" id="mini-card"
+                                    src="{{url_for('static', filename='img/Acapulco/Frente/restaurantes/' + name)}}" height="500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button onclick="downloadAcapulco();" class="btn"><i class="fa fa-download"></i>Descargar cupón</button>
+        </div>
+        <!-- End modal restaurantes Acapulco -->
+
+        <!-- Modal parques Acapulco -->
+        <div id="modalParquesAcapulco" class="modal-parques-acapulco">
+            <span class="close-acapulco" onclick="closeModalParquesAcapulco();">&times;</span>
+            <div class="modal-content">
+                {% for name in acapulco_parques %}
+                <div class="slidesAcapulcoParques">
+                    <div class="scene scene--card">
+                        <div class="card">
+                            <div class="card__face card__face--front">
+                                <img class="img-responsive card-acapulco" id="mini-card"
+                                    src="{{url_for('static', filename='img/Acapulco/Frente/parques/' + name)}}" height="500">
+                            </div>
+                            <div class="card__face card__face--back">
+                                <img class="img-responsive card-acapulco" id="mini-card"
+                                    src="{{url_for('static', filename='img/Acapulco/Frente/parques/' + name)}}" height="500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button onclick="downloadAcapulco();" class="btn"><i class="fa fa-download"></i>Descargar cupón</button>
+        </div>
+        <!-- End modal parques Acapulco -->
+
+        <!-- Modal tiendas Acapulco -->
+        <div id="modalTiendasAcapulco" class="modal-tiendas-acapulco">
+            <span class="close-acapulco" onclick="closeModalTiendasAcapulco();">&times;</span>
+            <div class="modal-content">
+                {% for name in acapulco_tiendas %}
+                <div class="slidesAcapulcoTiendas">
+                    <div class="scene scene--card">
+                        <div class="card">
+                            <div class="card__face card__face--front">
+                                <img class="img-responsive card-acapulco" id="mini-card"
+                                    src="{{url_for('static', filename='img/Acapulco/Frente/tiendas/' + name)}}" height="500">
+                            </div>
+                            <div class="card__face card__face--back">
+                                <img class="img-responsive card-acapulco" id="mini-card"
+                                    src="{{url_for('static', filename='img/Acapulco/Frente/tiendas/' + name)}}" height="500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button onclick="downloadAcapulco();" class="btn"><i class="fa fa-download"></i>Descargar cupón</button>
+        </div>
+        <!-- End modal tiendas Acapulco -->
+
+        <!-- Modal servicios Acapulco -->
+        <div id="modalServiciosAcapulco" class="modal-servicios-acapulco">
+            <span class="close-acapulco" onclick="closeModalServiciosAcapulco();">&times;</span>
+            <div class="modal-content">
+                {% for name in acapulco_servicios %}
+                <div class="slidesAcapulcoServicios">
+                    <div class="scene scene--card">
+                        <div class="card">
+                            <div class="card__face card__face--front">
+                                <img class="img-responsive card-acapulco" id="mini-card"
+                                    src="{{url_for('static', filename='img/Acapulco/Frente/servicios/' + name)}}" height="500">
+                            </div>
+                            <div class="card__face card__face--back">
+                                <img class="img-responsive card-acapulco" id="mini-card"
+                                    src="{{url_for('static', filename='img/Acapulco/Frente/servicios/' + name)}}" height="500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button onclick="downloadAcapulco();" class="btn"><i class="fa fa-download"></i>Descargar cupón</button>
+        </div>
+        <!-- End modal servicios Acapulco -->
     </section>
 
     <script type="text/javascript">
         var slideIndexZihua = 0, slideIndexAcapulco = 0;
 
-        function openModalAcapulco() {
-            document.getElementById("modalAcapulco").style.display = "block";
+        /************************ LUGARES ACAPULCO ************************/
+        function openModalAcapulcoLugares() {
+            document.getElementById("modalLugaresAcapulco").style.display = "block";
         }
 
-        function closeModalAcapulco() {
-            document.getElementById("modalAcapulco").style.display = "none";
+        function closeModalLugaresAcapulco() {
+            document.getElementById("modalLugaresAcapulco").style.display = "none";
         }
 
-        showSlidesAcapulco(slideIndexAcapulco);
+        showSlidesAcapulcoLugares(slideIndexAcapulco);
 
-        function currentSlideAcapulco(n) {
-            showSlidesAcapulco(slideIndexAcapulco = n);
+        function currentSlideAcapulcoLugares(n) {
+            showSlidesAcapulcoLugares(slideIndexAcapulco = n);
         }
 
-        function showSlidesAcapulco(n) {
+        function showSlidesAcapulcoLugares(n) {
             var i;
-            var slides = document.getElementsByClassName("slidesAcapulco");
+            var slides = document.getElementsByClassName("slidesAcapulcoLugares");
 
             for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
@@ -516,7 +746,115 @@
 
             slides[slideIndexAcapulco - 1].style.display = "block";
         }
+        /*********************** END LUGARES ACAPULCO ***********************/
 
+        /************************ RESTAURANTES ACAPULCO ************************/
+        function openModalAcapulcoRestaurantes() {
+            document.getElementById("modalRestaurantesAcapulco").style.display = "block";
+        }
+
+        function closeModalRestaurantesAcapulco() {
+            document.getElementById("modalRestaurantesAcapulco").style.display = "none";
+        }
+
+        showSlidesAcapulcoRestaurantes(slideIndexAcapulco);
+
+        function currentSlideAcapulcoRestaurantes(n) {
+            showSlidesAcapulcoRestaurantes(slideIndexAcapulco = n);
+        }
+
+        function showSlidesAcapulcoRestaurantes(n) {
+            var i;
+            var slides = document.getElementsByClassName("slidesAcapulcoRestaurantes");
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slides[slideIndexAcapulco - 1].style.display = "block";
+        }
+        /*********************** END RESTAURANTES ACAPULCO ***********************/
+
+        /************************ PARQUES ACAPULCO ************************/
+        function openModalAcapulcoParques() {
+            document.getElementById("modalParquesAcapulco").style.display = "block";
+        }
+
+        function closeModalParquesAcapulco() {
+            document.getElementById("modalParquesAcapulco").style.display = "none";
+        }
+
+        showSlidesAcapulcoParques(slideIndexAcapulco);
+
+        function currentSlideAcapulcoParques(n) {
+            showSlidesAcapulcoParques(slideIndexAcapulco = n);
+        }
+
+        function showSlidesAcapulcoParques(n) {
+            var i;
+            var slides = document.getElementsByClassName("slidesAcapulcoParques");
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slides[slideIndexAcapulco - 1].style.display = "block";
+        }
+        /*********************** END PARQUES ACAPULCO ***********************/
+
+        /************************ TIENDAS ACAPULCO ************************/
+        function openModalAcapulcoTiendas() {
+            document.getElementById("modalTiendasAcapulco").style.display = "block";
+        }
+
+        function closeModalTiendasAcapulco() {
+            document.getElementById("modalTiendasAcapulco").style.display = "none";
+        }
+
+        showSlidesAcapulcoTiendas(slideIndexAcapulco);
+
+        function currentSlideAcapulcoTiendas(n) {
+            showSlidesAcapulcoTiendas(slideIndexAcapulco = n);
+        }
+
+        function showSlidesAcapulcoTiendas(n) {
+            var i;
+            var slides = document.getElementsByClassName("slidesAcapulcoTiendas");
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slides[slideIndexAcapulco - 1].style.display = "block";
+        }
+        /*********************** END TIENDAS ACAPULCO ***********************/
+
+        /************************ SERVICIOS ACAPULCO ************************/
+        function openModalAcapulcoServicios() {
+            document.getElementById("modalServiciosAcapulco").style.display = "block";
+        }
+
+        function closeModalServiciosAcapulco() {
+            document.getElementById("modalServiciosAcapulco").style.display = "none";
+        }
+
+        showSlidesAcapulcoServicios(slideIndexAcapulco);
+
+        function currentSlideAcapulcoServicios(n) {
+            showSlidesAcapulcoServicios(slideIndexAcapulco = n);
+        }
+
+        function showSlidesAcapulcoServicios(n) {
+            var i;
+            var slides = document.getElementsByClassName("slidesAcapulcoServicios");
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slides[slideIndexAcapulco - 1].style.display = "block";
+        }
+        /*********************** END SERVICIOS ACAPULCO ***********************/
 
         /***************************** LUGARES *****************************/
         function openModalZihuaLugares() {
@@ -872,7 +1210,16 @@
                         $('.slider-tiendas-single').hide();
                         $('.slider-servicios').hide();
                         $('.slider-servicios-single').hide();
-                        $('.slider-acapulco').hide();
+                        $('.slider-lugares-acapulco').hide();
+                        $('.slider-parques-acapulco').hide();
+                        $('.slider-restaurantes-acapulco').hide();
+                        $('.slider-tiendas-acapulco').hide();
+                        $('.slider-servicios-acapulco').hide();
+                        $('.slider-lugares-acapulco-single').hide();
+                        $('.slider-restaurantes-acapulco-single').hide();
+                        $('.slider-parques-acapulco-single').hide();
+                        $('.slider-tiendas-acapulco-single').hide();
+                        $('.slider-servicios-acapulco-single').hide();
                     }
 
                     if (selection === "m2") {
@@ -902,7 +1249,16 @@
                         $('.slider-tiendas-single').hide();
                         $('.slider-servicios').hide();
                         $('.slider-servicios-single').hide();
-                        $('.slider-acapulco').hide();
+                        $('.slider-lugares-acapulco').hide();
+                        $('.slider-parques-acapulco').hide();
+                        $('.slider-restaurantes-acapulco').hide();
+                        $('.slider-tiendas-acapulco').hide();
+                        $('.slider-servicios-acapulco').hide();
+                        $('.slider-lugares-acapulco-single').hide();
+                        $('.slider-restaurantes-acapulco-single').hide();
+                        $('.slider-parques-acapulco-single').hide();
+                        $('.slider-tiendas-acapulco-single').hide();
+                        $('.slider-servicios-acapulco-single').hide();
                     }
 
                     if (selection === "m3") {
@@ -931,7 +1287,16 @@
                         $('.slider-tiendas-single').hide();
                         $('.slider-servicios').hide();
                         $('.slider-servicios-single').hide();
-                        $('.slider-acapulco').hide();
+                        $('.slider-lugares-acapulco').hide();
+                        $('.slider-parques-acapulco').hide();
+                        $('.slider-restaurantes-acapulco').hide();
+                        $('.slider-tiendas-acapulco').hide();
+                        $('.slider-servicios-acapulco').hide();
+                        $('.slider-lugares-acapulco-single').hide();
+                        $('.slider-restaurantes-acapulco-single').hide();
+                        $('.slider-parques-acapulco-single').hide();
+                        $('.slider-tiendas-acapulco-single').hide();
+                        $('.slider-servicios-acapulco-single').hide();
                     }
 
                     if (selection === "m4") {
@@ -960,7 +1325,16 @@
                         $('.slider-restaurantes-single').hide();
                         $('.slider-servicios').hide();
                         $('.slider-servicios-single').hide();
-                        $('.slider-acapulco').hide();
+                        $('.slider-lugares-acapulco').hide();
+                        $('.slider-parques-acapulco').hide();
+                        $('.slider-restaurantes-acapulco').hide();
+                        $('.slider-tiendas-acapulco').hide();
+                        $('.slider-servicios-acapulco').hide();
+                        $('.slider-lugares-acapulco-single').hide();
+                        $('.slider-restaurantes-acapulco-single').hide();
+                        $('.slider-parques-acapulco-single').hide();
+                        $('.slider-tiendas-acapulco-single').hide();
+                        $('.slider-servicios-acapulco-single').hide();
                     }
 
                     if (selection === "m5") {
@@ -989,7 +1363,16 @@
                         $('.slider-restaurantes-single').hide();
                         $('.slider-tiendas').hide();
                         $('.slider-tiendas-single').hide();
-                        $('.slider-acapulco').hide();
+                        $('.slider-lugares-acapulco').hide();
+                        $('.slider-parques-acapulco').hide();
+                        $('.slider-restaurantes-acapulco').hide();
+                        $('.slider-tiendas-acapulco').hide();
+                        $('.slider-servicios-acapulco').hide();
+                        $('.slider-lugares-acapulco-single').hide();
+                        $('.slider-restaurantes-acapulco-single').hide();
+                        $('.slider-parques-acapulco-single').hide();
+                        $('.slider-tiendas-acapulco-single').hide();
+                        $('.slider-servicios-acapulco-single').hide();
                     }
                 }
 
@@ -997,18 +1380,184 @@
                     let selection = document.getElementById("location-acapulco").value;
                     console.log(selection);
 
-                    if (selection === "m3") {
-                        $('.slider-acapulco').toggle();
-                        $('.slider-servicios').hide();
-                        $('.slider-servicios-single').hide();
-                        $('.slider-tiendas').hide();
-                        $('.slider-tiendas-single').hide();
+                    if (selection === "m1") {
+                        let slidesAcapulcoParques = document.getElementsByClassName("slidesAcapulcoParques");
+                        console.log('Acapulco parques length: ', slidesAcapulcoParques.length);
+
+                        if (slidesAcapulcoParques.length === 0)
+                        {
+                            let notExists
+                            notExists = document.getElementById('slider-parques-acapulco');
+
+                            notExists.innerHTML = '<br> <h1> No existen clientes registrados en esta categoría </h1>';
+                            notExists.style.textAlign = 'center';
+                        }
+
+                        if (slidesAcapulcoParques.length > 1) 
+                            $('.slider-parques-acapulco').toggle();
+                        else
+                            $('.slider-parques-acapulco-single').toggle();
+                                
+                        $('.slider-restaurantes').hide();
+                        $('.slider-restaurantes-single').hide();
                         $('.slider-lugares').hide();
                         $('.slider-lugares-single').hide();
+                        $('.slider-tiendas').hide();
+                        $('.slider-tiendas-single').hide();
+                        $('.slider-servicios').hide();
+                        $('.slider-servicios-single').hide();
+                        $('.slider-lugares-acapulco').hide();
+                        $('.slider-restaurantes-acapulco').hide();
+                        $('.slider-tiendas-acapulco').hide();
+                        $('.slider-servicios-acapulco').hide();
+                        $('.slider-lugares-acapulco-single').hide();
+                        $('.slider-restaurantes-acapulco-single').hide();
+                        $('.slider-tiendas-acapulco-single').hide();
+                        $('.slider-servicios-acapulco-single').hide();
+                    }
+
+                    if (selection === "m2") {
+                        let slidesAcapulcoRestaurantes = document.getElementsByClassName("slidesAcapulcoRestaurantes");
+                        console.log('Acapulco restaurantes length: ', slidesAcapulcoRestaurantes.length);
+
+                        if (slidesAcapulcoRestaurantes.length === 0)
+                        {
+                            let notExists
+                            notExists = document.getElementById('slider-restaurantes-acapulco');
+
+                            notExists.innerHTML = '<br> <h1> No existen clientes registrados en esta categoría </h1>';
+                            notExists.style.textAlign = 'center';
+                        }
+
+                        if (slidesAcapulcoRestaurantes.length > 1) 
+                            $('.slider-restaurantes-acapulco').toggle();
+                        else
+                            $('.slider-restaurantes-acapulco-single').toggle();
+                                
+                        $('.slider-parques').hide();
+                        $('.slider-parques-single').hide();
+                        $('.slider-lugares').hide();
+                        $('.slider-lugares-single').hide();
+                        $('.slider-tiendas').hide();
+                        $('.slider-tiendas-single').hide();
+                        $('.slider-servicios').hide();
+                        $('.slider-servicios-single').hide();
+                        $('.slider-parques-acapulco').hide();
+                        $('.slider-lugares-acapulco').hide();
+                        $('.slider-tiendas-acapulco').hide();
+                        $('.slider-servicios-acapulco').hide();
+                        $('.slider-lugares-acapulco-single').hide();
+                        $('.slider-parques-acapulco-single').hide();
+                        $('.slider-tiendas-acapulco-single').hide();
+                        $('.slider-servicios-acapulco-single').hide();
+                    }
+
+                    if (selection === "m3") {
+                        let slidesAcapulcoLugares = document.getElementsByClassName("slidesAcapulcoLugares");
+                        console.log('Acapulco lugares length: ', slidesAcapulcoLugares.length);
+
+                        if (slidesAcapulcoLugares.length === 0)
+                        {
+                            let notExists
+                            notExists = document.getElementById('slider-lugares-acapulco');
+
+                            notExists.innerHTML = '<br> <h1> No existen clientes registrados en esta categoría </h1>';
+                            notExists.style.textAlign = 'center';
+                        }
+
+                        if (slidesAcapulcoLugares.length > 1) 
+                            $('.slider-lugares-acapulco').toggle();
+                        else
+                            $('.slider-lugares-acapulco-single').toggle();
+                                
                         $('.slider-parques').hide();
                         $('.slider-parques-single').hide();
                         $('.slider-restaurantes').hide();
                         $('.slider-restaurantes-single').hide();
+                        $('.slider-tiendas').hide();
+                        $('.slider-tiendas-single').hide();
+                        $('.slider-servicios').hide();
+                        $('.slider-servicios-single').hide();
+                        $('.slider-restaurantes-acapulco').hide();
+                        $('.slider-parques-acapulco').hide();
+                        $('.slider-tiendas-acapulco').hide();
+                        $('.slider-servicios-acapulco').hide();
+                        $('.slider-restaurantes-acapulco-single').hide();
+                        $('.slider-parques-acapulco-single').hide();
+                        $('.slider-tiendas-acapulco-single').hide();
+                        $('.slider-servicios-acapulco-single').hide();
+                    }
+
+                    if (selection === "m4") {
+                        let slidesAcapulcoTiendas = document.getElementsByClassName("slidesAcapulcoTiendas");
+                        console.log('Acapulco tiendas length: ', slidesAcapulcoTiendas.length);
+
+                        if (slidesAcapulcoTiendas.length === 0)
+                        {
+                            let notExists
+                            notExists = document.getElementById('slider-tiendas-acapulco');
+
+                            notExists.innerHTML = '<br> <h1> No existen clientes registrados en esta categoría </h1>';
+                            notExists.style.textAlign = 'center';
+                        }
+
+                        if (slidesAcapulcoTiendas.length > 1) 
+                            $('.slider-tiendas-acapulco').toggle();
+                        else
+                            $('.slider-tiendas-acapulco-single').toggle();
+                                
+                        $('.slider-parques').hide();
+                        $('.slider-parques-single').hide();
+                        $('.slider-lugares').hide();
+                        $('.slider-lugares-single').hide();
+                        $('.slider-restaurantes').hide();
+                        $('.slider-restaurantes-single').hide();
+                        $('.slider-servicios').hide();
+                        $('.slider-servicios-single').hide();
+                        $('.slider-lugares-acapulco').hide();
+                        $('.slider-restaurantes-acapulco').hide();
+                        $('.slider-parques-acapulco').hide();
+                        $('.slider-servicios-acapulco').hide();
+                        $('.slider-lugares-acapulco-single').hide();
+                        $('.slider-restaurantes-acapulco-single').hide();
+                        $('.slider-parques-acapulco-single').hide();
+                        $('.slider-servicios-acapulco-single').hide();
+                    }
+
+                    if (selection === "m5") {
+                        let slidesAcapulcoServicios = document.getElementsByClassName("slidesAcapulcoServicios");
+                        console.log('Acapulco servicios length: ', slidesAcapulcoServicios.length);
+
+                        if (slidesAcapulcoServicios.length === 0)
+                        {
+                            let notExists
+                            notExists = document.getElementById('slider-tiendas-acapulco');
+
+                            notExists.innerHTML = '<br> <h1> No existen clientes registrados en esta categoría </h1>';
+                            notExists.style.textAlign = 'center';
+                        }
+
+                        if (slidesAcapulcoServicios.length > 1) 
+                            $('.slider-servicios-acapulco').toggle();
+                        else
+                            $('.slider-servicios-acapulco-single').toggle();
+                                
+                        $('.slider-parques').hide();
+                        $('.slider-parques-single').hide();
+                        $('.slider-lugares').hide();
+                        $('.slider-lugares-single').hide();
+                        $('.slider-restaurantes').hide();
+                        $('.slider-restaurantes-single').hide();
+                        $('.slider-tiendas').hide();
+                        $('.slider-tiendas-single').hide();
+                        $('.slider-lugares-acapulco').hide();
+                        $('.slider-restaurantes-acapulco').hide();
+                        $('.slider-parques-acapulco').hide();
+                        $('.slider-tiendas-acapulco').hide();
+                        $('.slider-lugares-acapulco-single').hide();
+                        $('.slider-restaurantes-acapulco-single').hide();
+                        $('.slider-parques-acapulco-single').hide();
+                        $('.slider-tiendas-acapulco-single').hide();
                     }
                 }
             </script>
