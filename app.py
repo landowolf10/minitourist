@@ -226,22 +226,25 @@ def updateClient(id):
             print("NEW CARD: " + newCard)
 
             if oldImage != newCard:
+                #No se están borrando las imagenes de las carpetas de Acapulco, revisar
                 deleteImage(oldImage, location, cardType)
 
                 fileName = secure_filename(f.filename)
             
                 print('fileName: ' + fileName)
 
+                clientLocation = selectClientLocation(id)
+                #image = selectOldClientImage(, clientLocation)
+
+                newClientImage = newCard.replace(' ', '_')
+
+                conn2 = mysql.connect()
+                cursor2 = conn2.cursor()
+                cursor2.callproc('spUpdateOldImage', (newClientImage, oldImage, clientLocation[0]))
+                conn2.commit()
+
                 if location == 'Zihuatanejo':
-                    clientLocation = selectClientLocation(id)
-                    #image = selectOldClientImage(, clientLocation)
-
-                    newClientImage = newCard.replace(' ', '_')
-
-                    conn2 = mysql.connect()
-                    cursor2 = conn2.cursor()
-                    cursor2.callproc('spUpdateOldImage', (newClientImage, oldImage, clientLocation[0]))
-                    conn2.commit()
+                    
 
                     if cardType == 'parques':
                         f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, fileName))
@@ -254,7 +257,17 @@ def updateClient(id):
                     elif cardType == 'servicios':
                         f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, fileName))
                 elif location == 'Acapulco':
-                    f.save(os.path.join('./static/img/Acapulco/Frente', fileName))
+                    #f.save(os.path.join('./static/img/Acapulco/Frente', fileName))
+                    if cardType == 'parques':
+                        f.save(os.path.join('./static/img/Acapulco/Frente/' + cardType, fileName))
+                    elif cardType == 'restaurantes':
+                        f.save(os.path.join('./static/img/Acapulco/Frente/' + cardType, fileName))
+                    elif cardType == 'lugares':
+                        f.save(os.path.join('./static/img/Acapulco/Frente/' + cardType, fileName))
+                    elif cardType == 'tiendas':
+                        f.save(os.path.join('./static/img/Acapulco/Frente/' + cardType, fileName))
+                    elif cardType == 'servicios':
+                        f.save(os.path.join('./static/img/Acapulco/Frente/' + cardType, fileName))
 
             conn = mysql.connect()
             cursor = conn.cursor()
