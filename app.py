@@ -297,8 +297,6 @@ def deleteClient(id):
         conn.commit()
 
         print('Image to delete: ' + clientImage)
-        print('CLIENT LOCATION: ' + clientLocation[0])
-        print('CARD TYPE: ' + clientLocation[1])
 
         deleteImage(clientImage, clientLocation[0], clientLocation[1])
 
@@ -587,6 +585,7 @@ def deleteImage(image, location, cardType):
     imageToDelete = image.replace(' ', '_')
 
     print('IMAGE TO DELETE: ' + imageToDelete)
+    print('LOCATION: ' + location)
     print('CARD TYPE: ' + cardType)
 
     if location == 'Zihuatanejo':
@@ -621,11 +620,36 @@ def deleteImage(image, location, cardType):
             else:
                 message = 'El archivo no existe'
     elif location == 'Acapulco':
-        if os.path.exists('./static/img/Acapulco/Frente/' + imageToDelete):
-            os.remove('./static/img/Acapulco/Frente/' + imageToDelete)
-            message = "Cliente eliminado"
-        else:
-            message = 'El archivo no existe'
+        if cardType == 'lugares':
+            if os.path.exists('./static/img/Acapulco/Frente/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Acapulco/Frente/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+        elif cardType == 'parques':
+            if os.path.exists('./static/img/Acapulco/Frente/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Acapulco/Frente/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+        elif cardType == 'restaurantes':
+            if os.path.exists('./static/img/Acapulco/Frente/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Acapulco/Frente/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+        elif cardType == 'servicios':
+            if os.path.exists('./static/img/Acapulco/Frente/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Acapulco/Frente/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+        elif cardType == 'tiendas':
+            if os.path.exists('./static/img/Acapulco/Frente/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Acapulco/Frente/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
 
     print(message)
 
