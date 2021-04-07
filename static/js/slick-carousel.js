@@ -66,17 +66,18 @@ function lugaresZihua()
             console.log('Number of slides lugares: ', slidesZihuaNumber);
             console.log('Slides to show lugares: ', slidesZihuaToShow);
 
-            $(".slider-lugares").slick({
-                infinite: true,
-                slidesToShow: slidesZihuaToShow,
-                slidesToScroll: 1,
-                dots: true,
-                autoplay: true,
-                autoplaySpeed: 5000,
-                centerMode: true
-            });
+            if(slidesZihuaNumber >= 1)
+                $(".slider-lugares").slick({
+                    infinite: true,
+                    slidesToShow: slidesZihuaToShow,
+                    slidesToScroll: 1,
+                    dots: true,
+                    autoplay: true,
+                    autoplaySpeed: 5000,
+                    centerMode: true
+                });
 
-            $(".slider-acapulco").slick({
+            /*$(".slider-acapulco").slick({
                 infinite: true,
                 slidesToShow: 3,
                 slidesToScroll: 1,
@@ -84,7 +85,7 @@ function lugaresZihua()
                 autoplay: true,
                 autoplaySpeed: 5000,
                 centerMode: true
-            });
+            });*/
         }).catch(e => {
             console.log(e);
         });
@@ -117,7 +118,7 @@ function parquesZihua()
             console.log('Number of slides parques: ', slidesZihuaNumber);
             console.log('Slides to show parques: ', slidesZihuaToShow);
 
-            if(slidesZihuaNumber > 1)
+            if(slidesZihuaNumber >= 1)
                 $(".slider-parques").slick({
                     infinite: true,
                     slidesToShow: slidesZihuaToShow,
@@ -159,15 +160,16 @@ function tiendasZihua()
             console.log('Number of slides tiendas: ', slidesZihuaNumber);
             console.log('Slides to show tiendas: ', slidesZihuaToShow);
 
-            $(".slider-tiendas").slick({
-                infinite: true,
-                slidesToShow: slidesZihuaToShow,
-                slidesToScroll: 1,
-                dots: true,
-                autoplay: true,
-                autoplaySpeed: 5000,
-                centerMode: true
-            });
+            if(slidesZihuaNumber >= 1)
+                $(".slider-tiendas").slick({
+                    infinite: true,
+                    slidesToShow: slidesZihuaToShow,
+                    slidesToScroll: 1,
+                    dots: true,
+                    autoplay: true,
+                    autoplaySpeed: 5000,
+                    centerMode: true
+                });
         }).catch(e => {
             console.log(e);
         });
@@ -200,15 +202,16 @@ function serviciosZihua()
             console.log('Number of slides servicios: ', slidesZihuaNumber);
             console.log('Slides to show servicios: ', slidesZihuaToShow);
 
-            $(".slider-servicios").slick({
-                infinite: true,
-                slidesToShow: slidesZihuaToShow,
-                slidesToScroll: 1,
-                dots: true,
-                autoplay: true,
-                autoplaySpeed: 5000,
-                centerMode: true
-            });
+            if(slidesZihuaNumber >= 1)
+                $(".slider-servicios").slick({
+                    infinite: true,
+                    slidesToShow: slidesZihuaToShow,
+                    slidesToScroll: 1,
+                    dots: true,
+                    autoplay: true,
+                    autoplaySpeed: 5000,
+                    centerMode: true
+                });
         }).catch(e => {
             console.log(e);
         });
@@ -370,7 +373,7 @@ function lugaresAcapulco()
             console.log('Number of slides parques: ', slidesAcapulcoNumber);
             console.log('Slides to show parques: ', slidesAcapulcoToShow);
 
-            if(slidesAcapulcoNumber > 1)
+            if(slidesAcapulcoNumber >= 1)
                 $(".slider-lugares-acapulco").slick({
                     infinite: true,
                     slidesToShow: slidesAcapulcoToShow,
@@ -412,7 +415,7 @@ function restaurantesAcapulco()
             console.log('Number of slides parques: ', slidesAcapulcoNumber);
             console.log('Slides to show parques: ', slidesAcapulcoToShow);
 
-            if(slidesAcapulcoNumber > 1)
+            if(slidesAcapulcoNumber >= 1)
                 $(".slider-restaurantes-acapulco").slick({
                     infinite: true,
                     slidesToShow: slidesAcapulcoToShow,
@@ -454,7 +457,7 @@ function parquesAcapulco()
             console.log('Number of slides parques: ', slidesAcapulcoNumber);
             console.log('Slides to show parques: ', slidesAcapulcoToShow);
 
-            if(slidesAcapulcoNumber > 1)
+            if(slidesAcapulcoNumber >= 1)
                 $(".slider-parques-acapulco").slick({
                     infinite: true,
                     slidesToShow: slidesAcapulcoToShow,
@@ -496,7 +499,7 @@ function tiendasAcapulco()
             console.log('Number of slides parques: ', slidesAcapulcoNumber);
             console.log('Slides to show parques: ', slidesAcapulcoToShow);
 
-            if(slidesAcapulcoNumber > 1)
+            if(slidesAcapulcoNumber >= 1)
                 $(".slider-tiendas-acapulco").slick({
                     infinite: true,
                     slidesToShow: slidesAcapulcoToShow,
@@ -538,7 +541,7 @@ function serviciosAcapulco()
             console.log('Number of slides parques: ', slidesAcapulcoNumber);
             console.log('Slides to show parques: ', slidesAcapulcoToShow);
 
-            if(slidesAcapulcoNumber > 1)
+            if(slidesAcapulcoNumber >= 1)
                 $(".slider-servicios-acapulco").slick({
                     infinite: true,
                     slidesToShow: slidesAcapulcoToShow,

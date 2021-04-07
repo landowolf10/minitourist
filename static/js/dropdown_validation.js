@@ -1,13 +1,19 @@
 function validateSelectors()
 {
-    let locationSelector = document.getElementById("location").value;
-    //let locationSelectedIndex = locationSelector.options[locationSelector.selectedIndex].value;
+    let selectedOption = document.getElementById('location').value;
+    console.log(selectedOption);
+    let cityTextbox =  document.getElementById('city');
+    cityTextbox.value = selectedOption;
+}
 
-    console.log("locationSelector: ", locationSelector);
+function emptyTextBoxes() 
+{
+    let name = document.getElementById('name').value;
+    console.log('Name: ', name);
 
-    if (locationSelector == "Seleccione una ciudad")
+    if(name === '')
     {
-      alert("Seleccione una ciudad");
-      window.location.href = "http://localhost:5000/clients";
+        alert('Favor de llenar todos los campos');
+        window.location.href = 'http://localhost:5000/clients';
     }
 }

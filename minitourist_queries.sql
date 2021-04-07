@@ -19,7 +19,7 @@ FROM usuarios;
 TRUNCATE TABLE usuarios;
 
 INSERT INTO usuarios (nombre, direccion, ciudad, telefono, email, pass, imagen, tipo_usuario, tipo_tarjeta)
-VALUES ('Luis Orlando Avila Garcia', 'Calle Ahuatla, colonia Las Cruces, Magdalena Contreras, CDMX', 'Ciudad de México', '5564191682', 'orlando.avilag@hotmail.com', 'LandoWolf10*',
+VALUES ('MiniTouristCards', 'Calle Adelitas, colonia La Madera, Zihuatanejo Guerrero', 'Zihuatanejo', '5564191682', 'minitouristcards@gmail.com', 'MiniTouristCards2021',
 'No aplica', 'Administrador', 'No aplica');
 
 UPDATE usuarios SET nombre = 'Luis Orlando Avila Garcia', direccion = 'Calle Ahuatla, colonia Las Cruces, Magdalena Contreras, CDMX', ciudad = 'Ciudad de México',
@@ -77,10 +77,13 @@ DELETE FROM usuarios WHERE id = 10;
 DELIMITER //
 CREATE PROCEDURE spDeleteClient
 (
-	IN clientID INT
+	IN clientID 		INT,
+    IN imageName 		VARCHAR(50),
+    IN clientLocation 	VARCHAR(100)
 )
 BEGIN
 	DELETE FROM usuarios WHERE id = clientID;
+    DELETE FROM tarjetas_status WHERE nombre = imageName AND ciudad = clientLocation;
 END//
 DELIMITER ;
 
@@ -154,6 +157,20 @@ BEGIN
         SET imagen = tarjeta
         WHERE id = id_cliente;
     END IF;
+END//
+DELIMITER ;
+
+
+
+DELIMITER //
+CREATE PROCEDURE spSelectClientData
+(
+	IN clientID INT
+)
+BEGIN
+	SELECT u.nombre, u.imagen
+    FROM usuarios AS u
+    WHERE u.id = clientID;
 END//
 DELIMITER ;
 
@@ -395,3 +412,70 @@ FROM usuarios;
 DELETE FROM usuarios WHERE id = 4;
 
 TRUNCATE TABLE usuarios;
+
+
+
+
+
+
+DELIMITER //
+CREATE PROCEDURE spUpdateOldImage
+(
+	IN newImage 		VARCHAR(50),
+    IN oldImage 		VARCHAR(50),
+    IN clientLocation 	VARCHAR(100)
+)
+BEGIN
+	UPDATE tarjetas_status SET nombre = newImage WHERE nombre = oldImage AND ciudad = clientLocation;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE spContarTarjetasLugaresAcapulco
+()
+BEGIN
+	SELECT COUNT(u.nombre) AS cantidad
+	FROM usuarios AS u
+	WHERE u.Ciudad = 'Acapulco' AND u.tipo_tarjeta = 'lugares';
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE spContarTarjetasRestAcapulco
+()
+BEGIN
+	SELECT COUNT(u.nombre) AS cantidad
+	FROM usuarios AS u
+	WHERE u.Ciudad = 'Acapulco' AND u.tipo_tarjeta = 'restaurantes';
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE spContarTarjetasParquesAcapulco
+()
+BEGIN
+	SELECT COUNT(u.nombre) AS cantidad
+	FROM usuarios AS u
+	WHERE u.Ciudad = 'Acapulco' AND u.tipo_tarjeta = 'parques';
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE spContarTarjetasTiendasAcapulco
+()
+BEGIN
+	SELECT COUNT(u.nombre) AS cantidad
+	FROM usuarios AS u
+	WHERE u.Ciudad = 'Acapulco' AND u.tipo_tarjeta = 'tiendas';
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE spContarTarjetasServiciosAcapulco
+()
+BEGIN
+	SELECT COUNT(u.nombre) AS cantidad
+	FROM usuarios AS u
+	WHERE u.Ciudad = 'Acapulco' AND u.tipo_tarjeta = 'servicios';
+END//
+DELIMITER ;
