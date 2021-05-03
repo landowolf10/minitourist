@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="/static/css/custom.css" />
     <!-- wow Animation css -->
     <link rel="stylesheet" href="/static/css/animate.css" />
+    <script type="text/javascript" src="/static/js/only_numbers.js"></script>
     <style>
         input[type=text],
         select,
@@ -196,7 +197,7 @@
                     <label for="name">Nombre</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="name" name="name" placeholder="Ingrese su nombre completo">
+                    <input type="text" id="name" name="name" placeholder="Ingrese su nombre completo" required>
                 </div>
             </div>
             <div class="row">
@@ -204,7 +205,7 @@
                     <label for="email">Email</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="email" name="email" placeholder="Ingrese su email">
+                    <input type="text" id="email" name="email" placeholder="Ingrese su email" required>
                 </div>
             </div>
             <div class="row">
@@ -212,7 +213,7 @@
                     <label for="phone">Teléfono</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="phone" name="phone" placeholder="Ingrese su teléfono con lada">
+                    <input type="text" id="phone" name="phone" placeholder="Ingrese su teléfono" required minlength="10" maxlength="10" onkeypress="return onlyNumberKey(event);">
                 </div>
             </div>
             <div class="row">
@@ -220,7 +221,7 @@
                     <label for="asunto">Asunto</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="asunto" name="asunto" placeholder="Ingrese su asunto">
+                    <input type="text" id="asunto" name="asunto" placeholder="Ingrese su asunto" required>
                 </div>
             </div>
             <div class="row">
@@ -228,7 +229,7 @@
                     <label for="mensaje">Mensaje</label>
                 </div>
                 <div class="col-75">
-                    <textarea id="mensaje" name="mensaje" placeholder="Escriba su mensaje" style="height:200px"></textarea>
+                    <textarea id="mensaje" name="mensaje" placeholder="Escriba su mensaje" style="height:200px" required></textarea>
                 </div>
             </div>
             <div class="row">

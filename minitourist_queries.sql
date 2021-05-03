@@ -27,6 +27,7 @@ imagen = 'No aplica', tipo_usuario = 'Administrador' WHERE id = 1;
 
 DROP TABLE tarjetas;
 
+
 CREATE TABLE IF NOT EXISTS tarjetas_status
 (
     id 		INT AUTO_INCREMENT,

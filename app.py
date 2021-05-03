@@ -40,6 +40,14 @@ def index():
     zihuatanejo_tiendas = [file for file in os.listdir('./static/img/Zihuatanejo/Frente/tiendas/') if file.endswith('.jpg')]
     zihuatanejo_servicios = [file for file in os.listdir('./static/img/Zihuatanejo/Frente/servicios/') if file.endswith('.jpg')]
 
+    zihuatanejo_parques_atras = [file for file in os.listdir('./static/img/Zihuatanejo/Atras/parques/') if file.endswith('.jpg')]
+    zihuatanejo_restaurantes_atras = [file for file in os.listdir('./static/img/Zihuatanejo/Atras/restaurantes/') if file.endswith('.jpg')]
+    zihuatanejo_lugares_atras = [file for file in os.listdir('./static/img/Zihuatanejo/Atras/lugares/') if file.endswith('.jpg')]
+    zihuatanejo_tiendas_atras = [file for file in os.listdir('./static/img/Zihuatanejo/Atras/tiendas/') if file.endswith('.jpg')]
+    zihuatanejo_servicios_atras = [file for file in os.listdir('./static/img/Zihuatanejo/Atras/servicios/') if file.endswith('.jpg')]
+
+    print('zihuatanejo_lugares_atras: ' + str(zihuatanejo_lugares_atras))
+
     acapulco_parques = [file for file in os.listdir('./static/img/Acapulco/Frente/parques/') if file.endswith('.jpg')]
     acapulco_restaurantes = [file for file in os.listdir('./static/img/Acapulco/Frente/restaurantes/') if file.endswith('.jpg')]
     acapulco_lugares = [file for file in os.listdir('./static/img/Acapulco/Frente/lugares/') if file.endswith('.jpg')]
@@ -138,32 +146,64 @@ def insertClient():
         psw = request.form['pass']
         location = request.form['location']
         card_type = request.form['card-type']
-        f = request.files['file_name']
+        front_image = request.files['front_image']
+        back_image = request.files['back_image']
 
-        fileName = secure_filename(f.filename)
+        fileNameFront = secure_filename(front_image.filename)
+        fileNameBack = secure_filename(back_image.filename)
 
-        if location == 'Zihuatanejo':
+        if location == 'Zihuatanejo':             
             if card_type == 'lugares':
-                f.save(os.path.join('./static/img/Zihuatanejo/Frente/lugares', fileName))
+                front_image.save(os.path.join('./static/img/Zihuatanejo/Frente/lugares', fileNameFront))
+                back_image.save(os.path.join('./static/img/Zihuatanejo/Atras/lugares', fileNameBack))
+                os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/lugares/' + str(fileNameBack),
+                '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/lugares/' + str(fileNameFront))
             elif card_type == 'parques':
-                f.save(os.path.join('./static/img/Zihuatanejo/Frente/parques', fileName))
+                front_image.save(os.path.join('./static/img/Zihuatanejo/Frente/parques', fileNameFront))
+                back_image.save(os.path.join('./static/img/Zihuatanejo/Atras/parques', fileNameBack))
+                os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/parques/' + str(fileNameBack),
+                '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/parques/' + str(fileNameFront))
             elif card_type == 'restaurantes':
-                f.save(os.path.join('./static/img/Zihuatanejo/Frente/restaurantes', fileName))
+                front_image.save(os.path.join('./static/img/Zihuatanejo/Frente/restaurantes', fileNameFront))
+                back_image.save(os.path.join('./static/img/Zihuatanejo/Atras/restaurantes', fileNameBack))
+                os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/restaurantes/' + str(fileNameBack),
+                '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/restaurantes/' + str(fileNameFront))
             elif card_type == 'servicios':
-                f.save(os.path.join('./static/img/Zihuatanejo/Frente/servicios', fileName))
+                front_image.save(os.path.join('./static/img/Zihuatanejo/Frente/servicios', fileNameFront))
+                back_image.save(os.path.join('./static/img/Zihuatanejo/Atras/servicios', fileNameBack))
+                os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/servicios/' + str(fileNameBack),
+                '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/servicios/' + str(fileNameFront))
             elif card_type == 'tiendas':
-                f.save(os.path.join('./static/img/Zihuatanejo/Frente/tiendas', fileName))
+                front_image.save(os.path.join('./static/img/Zihuatanejo/Frente/tiendas', fileNameFront))
+                back_image.save(os.path.join('./static/img/Zihuatanejo/Atras/tiendas', fileNameBack))
+                os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/tiendas/' + str(fileNameBack),
+                '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/tiendas/' + str(fileNameFront))
         elif location == 'Acapulco':
             if card_type == 'lugares':
-                f.save(os.path.join('./static/img/Acapulco/Frente/lugares', fileName))
+                front_image.save(os.path.join('./static/img/Acapulco/Frente/lugares', fileNameFront))
+                back_image.save(os.path.join('./static/img/Acapulco/Atras/lugares', fileNameBack))
+                os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/lugares/' + str(fileNameBack),
+                '../MinitouristCardsFinal/static/img/Acapulco/Atras/lugares/' + str(fileNameFront))
             elif card_type == 'parques':
-                f.save(os.path.join('./static/img/Acapulco/Frente/parques', fileName))
+                front_image.save(os.path.join('./static/img/Acapulco/Frente/parques', fileNameFront))
+                back_image.save(os.path.join('./static/img/Acapulco/Atras/parques', fileNameBack))
+                os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/parques/' + str(fileNameBack),
+                '../MinitouristCardsFinal/static/img/Acapulco/Atras/parques/' + str(fileNameFront))
             elif card_type == 'restaurantes':
-                f.save(os.path.join('./static/img/Acapulco/Frente/restaurantes', fileName))
+                front_image.save(os.path.join('./static/img/Acapulco/Frente/restaurantes', fileNameFront))
+                back_image.save(os.path.join('./static/img/Acapulco/Atras/restaurantes', fileNameBack))
+                os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/restaurantes/' + str(fileNameBack),
+                '../MinitouristCardsFinal/static/img/Acapulco/Atras/restaurantes/' + str(fileNameFront))
             elif card_type == 'servicios':
-                f.save(os.path.join('./static/img/Acapulco/Frente/servicios', fileName))
+                front_image.save(os.path.join('./static/img/Acapulco/Frente/servicios', fileNameFront))
+                back_image.save(os.path.join('./static/img/Acapulco/Atras/servicios', fileNameBack))
+                os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/servicios/' + str(fileNameBack),
+                '../MinitouristCardsFinal/static/img/Acapulco/Atras/servicios/' + str(fileNameFront))
             elif card_type == 'tiendas':
-                f.save(os.path.join('./static/img/Acapulco/Frente/tiendas', fileName))
+                front_image.save(os.path.join('./static/img/Acapulco/Frente/tiendas', fileNameFront))
+                back_image.save(os.path.join('./static/img/Acapulco/Atras/tiendas', fileNameBack))
+                os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/tiendas/' + str(fileNameBack),
+                '../MinitouristCardsFinal/static/img/Acapulco/Atras/tiendas/' + str(fileNameFront))
 
         print(nombre)
         print(direccion)
@@ -171,11 +211,11 @@ def insertClient():
         print(email)
         print(location)
         print(card_type)
-        print("IMAGE: " + fileName)
+        print("IMAGE: " + fileNameFront)
 
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.callproc('spInsertUser', (nombre, direccion, location, telefono, email, psw, fileName, 'Cliente', card_type))
+        cursor.callproc('spInsertUser', (nombre, direccion, location, telefono, email, psw, fileNameFront, 'Cliente', card_type))
         conn.commit()
 
         flash('Cliente agregado correctamente')
@@ -218,7 +258,9 @@ def updateClient(id):
             oldImage = request.form['old-img']
             cardType = request.form['card-type']
             newCard = request.form['new-card']
-            f = request.files['img']
+            newCardBack = request.form['new-card-back']
+            f = request.files['front-image']
+            fileNameBack = request.files['back-image']
 
             print("OLD IMAGE: " + oldImage)
             print("LOCATION: " + location)
@@ -226,7 +268,6 @@ def updateClient(id):
             print("NEW CARD: " + newCard)
 
             if oldImage != newCard:
-                #No se están borrando las imagenes de las carpetas de Acapulco, revisar
                 deleteImage(oldImage, location, cardType)
 
                 fileName = secure_filename(f.filename)
@@ -234,7 +275,6 @@ def updateClient(id):
                 print('fileName: ' + fileName)
 
                 clientLocation = selectClientLocation(id)
-                #image = selectOldClientImage(, clientLocation)
 
                 newClientImage = newCard.replace(' ', '_')
 
@@ -244,30 +284,97 @@ def updateClient(id):
                 conn2.commit()
 
                 if location == 'Zihuatanejo':
-                    
-
                     if cardType == 'parques':
                         f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, fileName))
+                        os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/parques/' + str(oldImage),
+                            '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/parques/' + str(newClientImage))
                     elif cardType == 'restaurantes':
                         f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, fileName))
+                        os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/restaurantes/' + str(oldImage),
+                            '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/restaurantes/' + str(newClientImage))
                     elif cardType == 'lugares':
                         f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, fileName))
+                        os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/lugares/' + str(oldImage),
+                            '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/lugares/' + str(newClientImage))
                     elif cardType == 'tiendas':
                         f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, fileName))
+                        os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/tiendas/' + str(oldImage),
+                            '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/tiendas/' + str(newClientImage))
                     elif cardType == 'servicios':
                         f.save(os.path.join('./static/img/Zihuatanejo/Frente/' + cardType, fileName))
+                        os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/servicios/' + str(oldImage),
+                            '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/servicios/' + str(newClientImage))
                 elif location == 'Acapulco':
-                    #f.save(os.path.join('./static/img/Acapulco/Frente', fileName))
                     if cardType == 'parques':
                         f.save(os.path.join('./static/img/Acapulco/Frente/' + cardType, fileName))
+                        os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/parques/' + str(oldImage),
+                            '../MinitouristCardsFinal/static/img/Acapulco/Atras/parques/' + str(newClientImage))
                     elif cardType == 'restaurantes':
                         f.save(os.path.join('./static/img/Acapulco/Frente/' + cardType, fileName))
+                        os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/restaurantes/' + str(oldImage),
+                            '../MinitouristCardsFinal/static/img/Acapulco/Atras/restaurantes/' + str(newClientImage))
                     elif cardType == 'lugares':
                         f.save(os.path.join('./static/img/Acapulco/Frente/' + cardType, fileName))
+                        os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/lugares/' + str(oldImage),
+                            '../MinitouristCardsFinal/static/img/Acapulco/Atras/lugares/' + str(newClientImage))
                     elif cardType == 'tiendas':
                         f.save(os.path.join('./static/img/Acapulco/Frente/' + cardType, fileName))
+                        os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/tiendas/' + str(oldImage),
+                            '../MinitouristCardsFinal/static/img/Acapulco/Atras/tiendas/' + str(newClientImage))
                     elif cardType == 'servicios':
                         f.save(os.path.join('./static/img/Acapulco/Frente/' + cardType, fileName))
+                        os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/servicios/' + str(oldImage),
+                            '../MinitouristCardsFinal/static/img/Acapulco/Atras/servicios/' + str(newClientImage))
+
+            if oldImage != newCardBack:
+                deleteImageBack(oldImage, location, cardType)
+
+                fileNameBackOld = secure_filename(fileNameBack.filename)
+            
+                print('fileNameBackOld: ' + fileNameBackOld)
+
+                newClientImageBack = oldImage.replace(' ', '_')
+
+                if location == 'Zihuatanejo':
+                    if cardType == 'parques':
+                        fileNameBack.save(os.path.join('./static/img/Zihuatanejo/Atras/' + cardType, fileNameBackOld))
+                        os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/parques/' + str(fileNameBackOld),
+                            '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/parques/' + str(newClientImageBack))
+                    elif cardType == 'restaurantes':
+                        fileNameBack.save(os.path.join('./static/img/Zihuatanejo/Atras/' + cardType, fileNameBackOld))
+                    elif cardType == 'lugares':
+                        fileNameBack.save(os.path.join('./static/img/Zihuatanejo/Atras/' + cardType, fileNameBackOld))
+                        os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/lugares/' + str(fileNameBackOld),
+                            '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/lugares/' + str(newClientImageBack))
+                    elif cardType == 'tiendas':
+                        fileNameBack.save(os.path.join('./static/img/Zihuatanejo/Atras/' + cardType, fileNameBackOld))
+                        os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/tiendas/' + str(fileNameBackOld),
+                            '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/tiendas/' + str(newClientImageBack))
+                    elif cardType == 'servicios':
+                        fileNameBack.save(os.path.join('./static/img/Zihuatanejo/Atras/' + cardType, fileNameBackOld))
+                        os.rename('../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/servicios/' + str(fileNameBackOld),
+                            '../MinitouristCardsFinal/static/img/Zihuatanejo/Atras/servicios/' + str(newClientImageBack))
+                elif location == 'Acapulco':
+                    if cardType == 'parques':
+                        fileNameBack.save(os.path.join('./static/img/Acapulco/Atras/' + cardType, fileNameBackOld))
+                        os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/parques/' + str(fileNameBackOld),
+                            '../MinitouristCardsFinal/static/img/Acapulco/Atras/parques/' + str(newClientImageBack))
+                    elif cardType == 'restaurantes':
+                        fileNameBack.save(os.path.join('./static/img/Acapulco/Atras/' + cardType, fileNameBackOld))
+                        os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/restaurantes/' + str(fileNameBackOld),
+                            '../MinitouristCardsFinal/static/img/Acapulco/Atras/restaurantes/' + str(newClientImageBack))
+                    elif cardType == 'lugares':
+                        fileNameBack.save(os.path.join('./static/img/Acapulco/Atras/' + cardType, fileNameBackOld))
+                        os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/lugares/' + str(fileNameBackOld),
+                            '../MinitouristCardsFinal/static/img/Acapulco/Atras/lugares/' + str(newClientImageBack))
+                    elif cardType == 'tiendas':
+                        fileNameBack.save(os.path.join('./static/img/Acapulco/Atras/' + cardType, fileNameBackOld))
+                        os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/tiendas/' + str(fileNameBackOld),
+                            '../MinitouristCardsFinal/static/img/Acapulco/Atras/tiendas/' + str(newClientImageBack))
+                    elif cardType == 'servicios':
+                        fileNameBack.save(os.path.join('./static/img/Acapulco/Atras/' + cardType, fileNameBackOld))
+                        os.rename('../MinitouristCardsFinal/static/img/Acapulco/Atras/servicios/' + str(fileNameBackOld),
+                            '../MinitouristCardsFinal/static/img/Acapulco/Atras/servicios/' + str(newClientImageBack))
 
             conn = mysql.connect()
             cursor = conn.cursor()
@@ -299,6 +406,7 @@ def deleteClient(id):
         print('Image to delete: ' + clientImage)
 
         deleteImage(clientImage, clientLocation[0], clientLocation[1])
+        deleteImageBack(clientImage, clientLocation[0], clientLocation[1])
 
         flash('Cliente eliminado correctamente')
 
@@ -647,6 +755,78 @@ def deleteImage(image, location, cardType):
         elif cardType == 'tiendas':
             if os.path.exists('./static/img/Acapulco/Frente/' + cardType + '/' + imageToDelete):
                 os.remove('./static/img/Acapulco/Frente/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+
+    print(message)
+
+def deleteImageBack(image, location, cardType):
+    imageToDelete = image.replace(' ', '_')
+
+    print('IMAGE TO DELETE BACK: ' + imageToDelete)
+    print('LOCATION BACK: ' + location)
+    print('CARD TYPE BACK: ' + cardType)
+
+    if location == 'Zihuatanejo':
+        if cardType == 'lugares':
+            if os.path.exists('./static/img/Zihuatanejo/Atras/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Zihuatanejo/Atras/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+        elif cardType == 'parques':
+            if os.path.exists('./static/img/Zihuatanejo/Atras/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Zihuatanejo/Atras/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+        elif cardType == 'restaurantes':
+            if os.path.exists('./static/img/Zihuatanejo/Atras/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Zihuatanejo/Atras/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+        elif cardType == 'servicios':
+            if os.path.exists('./static/img/Zihuatanejo/Atras/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Zihuatanejo/Atras/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+        elif cardType == 'tiendas':
+            if os.path.exists('./static/img/Zihuatanejo/Atras/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Zihuatanejo/Atras/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+    elif location == 'Acapulco':
+        if cardType == 'lugares':
+            if os.path.exists('./static/img/Acapulco/Atras/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Acapulco/Atras/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+        elif cardType == 'parques':
+            if os.path.exists('./static/img/Acapulco/Atras/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Acapulco/Atras/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+        elif cardType == 'restaurantes':
+            if os.path.exists('./static/img/Acapulco/Atras/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Acapulco/Atras/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+        elif cardType == 'servicios':
+            if os.path.exists('./static/img/Acapulco/Atras/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Acapulco/Atras/' + cardType + '/' + imageToDelete)
+                message = "Cliente eliminado"
+            else:
+                message = 'El archivo no existe'
+        elif cardType == 'tiendas':
+            if os.path.exists('./static/img/Acapulco/Atras/' + cardType + '/' + imageToDelete):
+                os.remove('./static/img/Acapulco/Atras/' + cardType + '/' + imageToDelete)
                 message = "Cliente eliminado"
             else:
                 message = 'El archivo no existe'

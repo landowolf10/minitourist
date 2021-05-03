@@ -1,10 +1,17 @@
-function changeImage()
-{
-    document.getElementById('img').addEventListener('change', function()
-    { 
-        var name = document.getElementById('img').files[0].name; 
-        console.log(name);
+const selectFrontImage = document.querySelector('.front-image');
+const selectBackImage = document.querySelector('.back-image');
 
-        document.getElementById('new-card').value = name;
-    });
+selectFrontImage.addEventListener('change', changeFrontImage);
+selectBackImage.addEventListener('change', changeBackImage);
+
+function changeFrontImage(evt)
+{
+    let frontImage = evt.target.value.split('\\').pop();
+    newBackImageInput = document.querySelector('.new-card').value = frontImage;
+}
+
+function changeBackImage(evt)
+{
+    let backImage = evt.target.value.split('\\').pop();
+    newBackImageInput = document.querySelector('.new-card-back').value = backImage;
 }

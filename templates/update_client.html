@@ -105,15 +105,17 @@
     <div class="card card-body">
         <form action="/update/{{data.0}}" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <input type="text" name="client" placeholder="Nombre del cliente" value="{{data.1}}" class="form-control">
-                <input type="text" name="direction" placeholder="Dirección" value="{{data.2}}" class="form-control">
-                <input type="hidden" name="location" value="{{data.3}}" class="form-control">
-                <input type="text" name="phone" placeholder="Número de teléfono " value="{{data.4}}" class="form-control">
-                <input type="text" name="email" placeholder="Correo electrónico" value="{{data.5}}" class="form-control">
-                <input type="hidden" name="old-img" value="{{data.7}}" class="form-control">
+                <input type="text" name="client" placeholder="Nombre del cliente" value="{{data.1}}" class="form-control" required>
+                <input type="text" name="direction" placeholder="Dirección" value="{{data.2}}" class="form-control" required>
+                <input type="hidden" name="location" value="{{data.3}}" class="form-control" required>
+                <input type="text" name="phone" placeholder="Número de teléfono " value="{{data.4}}" class="form-control" required>
+                <input type="text" name="email" placeholder="Correo electrónico" value="{{data.5}}" class="form-control" required>
+                <input type="hidden" name="old-img" value="{{data.7}}" class="form-control" required>
                 <input type="hidden" name="card-type" value="{{data.9}}" class="form-control">
-                <input type="text" name="new-card" id="new-card" value="{{data.7}}" class="form-control">
-                <input type="file" name="img" id="img" class="form-control" onchange="changeImage();">
+                <input type="text" name="new-card" id="new-card" value="{{data.7}}" class="form-control new-card" required>
+                <input type="text" name="new-card-back" id="new-card-back" value="{{data.7}}" class="form-control new-card-back" required>
+                <input type="file" name="front-image" id="front-image" class="form-control front-image">
+                <input type="file" name="back-image" id="back-image" class="form-control back-image">
                 <button type="submit" class="btn btn-primary btn-block">
                     Actualizar
                 </button>
@@ -129,4 +131,5 @@
 <script src="/static/js/wow.js"></script>
 <!-- custom js -->
 <script src="/static/js/custom.js"></script>
+<script src="/static/js/newImage.js"></script>
 {% endblock %}
